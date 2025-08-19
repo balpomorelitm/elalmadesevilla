@@ -1,16 +1,23 @@
-layout: chapter title: "Capítulo 3: ¿Qué es una tapa?"
-<!-- Botón para mostrar/ocultar Emojis -->
+---
+layout: chapter
+title: "Capítulo 3: ¿Qué es una tapa?"
+chapter_number: 3
+audio_file: /assets/audio/capitulo-3.mp3
+---
 
+<!-- Botón para mostrar/ocultar Emojis -->
 <button id="emoji-toggle" class="emoji-toggle-button">Mostrar Emojis 💡</button>
 
 <!-- Reproductor de Audio -->
-
-<!-- <div class="audio-player"><audio controls src="/assets/audio/capitulo-3.mp3"></audio></div> -->
+<div class="audio-player">
+    <audio controls src="{{ page.audio_file }}">
+        Tu navegador no soporta el audio.
+    </audio>
+</div>
 
 <hr>
 
 <!-- Texto del Capítulo con Glosas y Emojis -->
-
 <p>Después de la clase, Carmen dice:<br>—¿Vamos a comer <strong><span class="glosa" data-definicion="Small portions of food served with drinks in Spanish bars. It's a very important part of the culture.">tapas</span></strong>?</p>
 
 <p>Panda y yo no entendemos.<br>—¿Tapas? —pregunto yo.</p>
@@ -33,24 +40,34 @@ layout: chapter title: "Capítulo 3: ¿Qué es una tapa?"
 
 <hr>
 
-<!-- Preguntas de Comprensión Lectora -->
+<!-- Sección de Reacciones con Emojis -->
+<div class="reacciones">
+    <p>¿Qué te ha parecido el capítulo?</p>
+    <button>❤️</button>
+    <button>😂</button>
+    <button>😮</button>
+    <button>🤔</button>
+</div>
 
+<hr>
+
+<!-- Preguntas de Comprensión Lectora -->
 <div class="quiz">
-<h3>Preguntas de Comprensión</h3>
-<form class="quiz-form">
-<div class="pregunta">
-<p><strong>1. ¿Qué es una "tapa"?</strong></p>
-<label><input type="radio" name="q1" value="a" data-correcta="true"> Comida pequeña</label>
-<label><input type="radio" name="q1" value="b"> Una bebida grande</label>
-<label><input type="radio" name="q1" value="c"> Un libro de la escuela</label>
-</div>
-<div class="pregunta">
-<p><strong>2. ¿Qué comen Leo y sus amigos en el bar?</strong></p>
-<label><input type="radio" name="q2" value="a"> Sándwiches</label>
-<label><input type="radio" name="q2" value="b" data-correcta="true"> Tortilla de patatas y gazpacho</label>
-<label><input type="radio" name="q2" value="c"> Comida de Hong Kong</label>
-</div>
-<button type="submit" class="quiz-submit-btn">Verificar Respuestas</button>
-</form>
-<div class="resultado-quiz"></div>
+    <h3>Preguntas de Comprensión</h3>
+    <form class="quiz-form">
+        <div class="pregunta">
+            <p><strong>1. ¿Qué es una "tapa"?</strong></p>
+            <label><input type="radio" name="q1" value="a" data-correcta="true"> Comida pequeña</label>
+            <label><input type="radio" name="q1" value="b"> Una bebida grande</label>
+            <label><input type="radio" name="q1" value="c"> Un libro de la escuela</label>
+        </div>
+        <div class="pregunta">
+            <p><strong>2. ¿Qué comen Leo y sus amigos en el bar?</strong></p>
+            <label><input type="radio" name="q2" value="a"> Sándwiches</label>
+            <label><input type="radio" name="q2" value="b" data-correcta="true"> Tortilla de patatas y gazpacho</label>
+            <label><input type="radio" name="q2" value="c"> Comida de Hong Kong</label>
+        </div>
+        <button type="submit" class="quiz-submit-btn">Verificar Respuestas</button>
+    </form>
+    <div class="resultado-quiz"></div>
 </div>
