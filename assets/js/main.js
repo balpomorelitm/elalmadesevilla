@@ -44,7 +44,6 @@ function initializeEmojiToggle() {
         emojisVisibles = !emojisVisibles;
         const palabrasConEmoji = document.querySelectorAll('.emoji-word');
 
-
         if (emojisVisibles) {
             showEmojis(palabrasConEmoji);
             this.innerHTML = 'Ocultar Emojis 🙈';
@@ -210,46 +209,6 @@ function saveReaction(chapter, reaction) {
     localStorage.setItem('bookReactions', JSON.stringify(reactions));
 }
 
-function initializeEmojiToggle() {
-    const emojiToggleButton = document.getElementById('emoji-toggle');
-    if (!emojiToggleButton) return;
-    
-    let emojisVisibles = false;
-    
-    emojiToggleButton.addEventListener('click', function() {
-        emojisVisibles = !emojisVisibles;
-        const palabrasConEmoji = document.querySelectorAll('.emoji-word');
-        
-        if (emojisVisibles) {
-            showEmojis(palabrasConEmoji);
-            this.innerHTML = 'Ocultar Emojis 🙈';
-        } else {
-            hideEmojis();
-            this.innerHTML = 'Mostrar Emojis 💡';
-        }
-    });
-}
-
-
-    resultadoDiv.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-    });
-}
-
-function initializeReactions() {
-    const reactionContainers = document.querySelectorAll('.reacciones');
-    reactionContainers.forEach(container => {
-        const buttons = container.querySelectorAll('button');
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                buttons.forEach(btn => btn.classList.remove('selected'));
-                button.classList.add('selected');
-            });
-        });
-    });
-}
-
 function optimizeLoading() {
     // Lazy load images if any
     const images = document.querySelectorAll('img');
@@ -272,4 +231,3 @@ function optimizeLoading() {
 
 // Call on load
 window.addEventListener('load', optimizeLoading);
-
