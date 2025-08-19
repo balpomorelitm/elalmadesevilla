@@ -1,4 +1,7 @@
-layout: chapter title: "Capítulo 2: La escuela de español"
+---
+layout: chapter
+title: "Capítulo 1: Un piso en Sevilla"
+---
 <!-- Botón para mostrar/ocultar Emojis -->
 
 <button id="emoji-toggle" class="emoji-toggle-button">Mostrar Emojis 💡</button>
