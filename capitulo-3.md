@@ -5,7 +5,7 @@ layout: chapter title: "Capítulo 3: ¿Qué es una tapa?"
 
 <!-- Reproductor de Audio -->
 
-<!-- <audio controls src="/assets/audio/capitulo-3.mp3"></audio> -->
+<!-- <div class="audio-player"><audio controls src="/assets/audio/capitulo-3.mp3"></audio></div> -->
 
 <hr>
 

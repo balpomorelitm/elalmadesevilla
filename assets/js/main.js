@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- LÓGICA PARA MOSTRAR/OCULTAR EMOJIS ---
     initializeEmojiToggle();
 
+    // --- LÓGICA PARA REACCIONES ---
+    initializeReactions();
+
     // --- LÓGICA AVANZADA PARA QUIZZES ---
     initializeQuizzes();
 });
@@ -136,6 +139,39 @@ function showQuizResults(form, correctas, total) {
         block: 'center' 
     });
 }
+
+function initializeReactions() {
+    const reactionButtons = document.querySelectorAll('.reacciones button');
+
+    reactionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.add('clicked');
+
+            // Remove animation class after animation completes
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 600);
+
+            // Optional: Save reaction to localStorage
+            const chapter = document.querySelector('h1').textContent;
+            const reaction = this.textContent;
+            saveReaction(chapter, reaction);
+        });
+    });
+}
+
+function saveReaction(chapter, reaction) {
+    const reactions = JSON.parse(localStorage.getItem('bookReactions') || '{}');
+    if (!reactions[chapter]) {
+        reactions[chapter] = [];
+    }
+    reactions[chapter].push({
+        reaction: reaction,
+        timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('bookReactions', JSON.stringify(reactions));
+}
+
 function initializeEmojiToggle() {
     const emojiToggleButton = document.getElementById('emoji-toggle');
     if (!emojiToggleButton) return;
@@ -189,5 +225,4 @@ function hideEmojis() {
             }
         }, 300 + (index * 50));
     });
-}
 }
