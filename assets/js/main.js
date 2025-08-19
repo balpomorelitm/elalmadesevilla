@@ -42,28 +42,49 @@ document.addEventListener('DOMContentLoaded', function() {
     quizForms.forEach(form => {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
-            
+
             let correctas = 0;
             const preguntas = form.querySelectorAll('.pregunta');
-            
+
             preguntas.forEach((pregunta, index) => {
                 const inputSeleccionado = pregunta.querySelector(`input[name="q${index + 1}"]:checked`);
+                const labels = pregunta.querySelectorAll('label');
                 // Limpia estilos previos
-                pregunta.querySelectorAll('label').forEach(label => label.style.color = 'inherit');
+                labels.forEach(label => {
+                    label.classList.remove('correct', 'incorrect', 'correct-answer');
+                });
 
                 if (inputSeleccionado) {
                     const labelSeleccionada = inputSeleccionado.parentElement;
                     if (inputSeleccionado.hasAttribute('data-correcta')) {
                         correctas++;
-                        labelSeleccionada.style.color = 'green';
+                        labelSeleccionada.classList.add('correct');
                     } else {
-                        labelSeleccionada.style.color = 'red';
+                        labelSeleccionada.classList.add('incorrect');
+                        const correcta = pregunta.querySelector('input[data-correcta]');
+                        if (correcta) {
+                            correcta.parentElement.classList.add('correct-answer');
+                        }
                     }
                 }
             });
 
             const resultadoDiv = form.nextElementSibling;
-            resultadoDiv.textContent = `Has acertado ${correctas} de ${preguntas.length} preguntas.`;
+            const total = preguntas.length;
+            resultadoDiv.classList.remove('perfect', 'good', 'needs-improvement', 'show');
+
+            let mensaje = `Has acertado ${correctas} de ${total} preguntas.`;
+            if (correctas === total) {
+                resultadoDiv.classList.add('perfect');
+                mensaje = '¡Perfecto! Has acertado todas las preguntas.';
+            } else if (correctas >= total / 2) {
+                resultadoDiv.classList.add('good');
+            } else {
+                resultadoDiv.classList.add('needs-improvement');
+            }
+
+            resultadoDiv.textContent = mensaje;
+            resultadoDiv.classList.add('show');
         });
     });
 });
