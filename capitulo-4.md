@@ -5,7 +5,7 @@ layout: chapter title: "Capítulo 4: Un paseo por Santa Cruz"
 
 <!-- Reproductor de Audio -->
 
-<!-- <audio controls src="/assets/audio/capitulo-4.mp3"></audio> -->
+<!-- <div class="audio-player"><audio controls src="/assets/audio/capitulo-4.mp3"></audio></div> -->
 
 <hr>
 
