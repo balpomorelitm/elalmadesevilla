@@ -37,33 +37,101 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- LÓGICA GENÉRICA PARA TODOS LOS QUIZZES ---
+    // --- LÓGICA AVANZADA PARA QUIZZES ---
+    initializeQuizzes();
+});
+
+function initializeQuizzes() {
     const quizForms = document.querySelectorAll('.quiz-form');
-    quizForms.forEach(form => {
+    
+    quizForms.forEach((form, formIndex) => {
+        // Add submit button class
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.classList.add('quiz-submit-btn');
+        }
+        
         form.addEventListener('submit', function(event) {
             event.preventDefault();
-            
-            let correctas = 0;
-            const preguntas = form.querySelectorAll('.pregunta');
-            
-            preguntas.forEach((pregunta, index) => {
-                const inputSeleccionado = pregunta.querySelector(`input[name="q${index + 1}"]:checked`);
-                // Limpia estilos previos
-                pregunta.querySelectorAll('label').forEach(label => label.style.color = 'inherit');
-
-                if (inputSeleccionado) {
-                    const labelSeleccionada = inputSeleccionado.parentElement;
-                    if (inputSeleccionado.hasAttribute('data-correcta')) {
-                        correctas++;
-                        labelSeleccionada.style.color = 'green';
-                    } else {
-                        labelSeleccionada.style.color = 'red';
-                    }
-                }
-            });
-
-            const resultadoDiv = form.nextElementSibling;
-            resultadoDiv.textContent = `Has acertado ${correctas} de ${preguntas.length} preguntas.`;
+            handleQuizSubmission(form, formIndex);
         });
     });
-});
+}
+
+function handleQuizSubmission(form, formIndex) {
+    let correctas = 0;
+    const preguntas = form.querySelectorAll('.pregunta');
+    const totalPreguntas = preguntas.length;
+    
+    // Reset previous styling
+    form.querySelectorAll('label').forEach(label => {
+        label.classList.remove('correct', 'incorrect', 'correct-answer');
+    });
+    
+    preguntas.forEach((pregunta, index) => {
+        const questionName = `q${index + 1}`;
+        const inputSeleccionado = pregunta.querySelector(`input[name="${questionName}"]:checked`);
+        const correctInput = pregunta.querySelector(`input[data-correcta="true"]`);
+        const allInputs = pregunta.querySelectorAll(`input[name="${questionName}"]`);
+        
+        if (inputSeleccionado) {
+            const labelSeleccionada = inputSeleccionado.parentElement;
+            
+            if (inputSeleccionado.hasAttribute('data-correcta')) {
+                correctas++;
+                labelSeleccionada.classList.add('correct');
+            } else {
+                labelSeleccionada.classList.add('incorrect');
+                // Show correct answer
+                if (correctInput) {
+                    correctInput.parentElement.classList.add('correct-answer');
+                }
+            }
+        } else {
+            // No answer selected, show correct answer
+            if (correctInput) {
+                correctInput.parentElement.classList.add('correct-answer');
+            }
+        }
+    });
+    
+    // Show results with animation and feedback
+    showQuizResults(form, correctas, totalPreguntas);
+}
+
+function showQuizResults(form, correctas, total) {
+    const resultadoDiv = form.nextElementSibling;
+    const percentage = (correctas / total) * 100;
+    
+    let message = `Has acertado ${correctas} de ${total} preguntas (${percentage.toFixed(0)}%)`;
+    let feedback = '';
+    let cssClass = '';
+    
+    if (percentage === 100) {
+        feedback = ' ¡Perfecto! 🎉';
+        cssClass = 'perfect';
+    } else if (percentage >= 70) {
+        feedback = ' ¡Muy bien! 👏';
+        cssClass = 'good';
+    } else if (percentage >= 50) {
+        feedback = ' Bien, pero puedes mejorar 📚';
+        cssClass = 'good';
+    } else {
+        feedback = ' Necesitas repasar más 💪';
+        cssClass = 'needs-improvement';
+    }
+    
+    resultadoDiv.textContent = message + feedback;
+    resultadoDiv.className = `resultado-quiz ${cssClass}`;
+    
+    // Trigger animation
+    setTimeout(() => {
+        resultadoDiv.classList.add('show');
+    }, 100);
+    
+    // Scroll to results
+    resultadoDiv.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+    });
+}
