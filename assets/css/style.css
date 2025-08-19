@@ -8,7 +8,40 @@ body {
     padding: 20px;
 }
 
-/* --- Estilos para Glosario y Emojis --- */
+/* --- Estilos para la Página de Inicio (index.html) --- */
+.container {
+    padding: 20px;
+    text-align: center;
+}
+
+.chapter-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.chapter-list li {
+    margin: 15px 0;
+}
+
+.chapter-list a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    display: block;
+}
+
+.chapter-list a:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+
+/* --- Estilos para Glosario y Emojis en los capítulos --- */
 
 /* Botón para mostrar/ocultar emojis */
 .emoji-toggle-button {
