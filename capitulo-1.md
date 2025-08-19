@@ -48,22 +48,22 @@ audio_file: /assets/audio/capitulo-1.mp3
 <hr>
 
 <!-- Preguntas de Comprensión Lectora -->
-<div class="quiz">
-    <h3>Preguntas de Comprensión</h3>
-    <form id="quiz-capitulo-1">
-        <div class="pregunta">
-            <p><strong>1. ¿De dónde es Leo?</strong></p>
-            <label><input type="radio" name="q1" value="a"> De Sevilla</label><br>
-            <label><input type="radio" name="q1" value="b" data-correcta="true"> De Hong Kong</label><br>
-            <label><input type="radio" name="q1" value="c"> De España</label><br>
-        </div>
-        <div class="pregunta">
-            <p><strong>2. ¿Qué ve Leo desde la ventana de su habitación?</strong></p>
-            <label><input type="radio" name="q2" value="a" data-correcta="true"> La Giralda</label><br>
-            <label><input type="radio" name="q2" value="b"> El cielo azul</label><br>
-            <label><input type="radio" name="q2" value="c"> Un taxi</label><br>
-        </div>
-        <button type="submit">Verificar Respuestas</button>
-    </form>
-    <div id="resultado-quiz-1" class="resultado-quiz"></div>
-</div>
+    <div class="quiz">
+        <h3>Preguntas de Comprensión</h3>
+        <form id="quiz-capitulo-1" class="quiz-form">
+            <div class="pregunta">
+                <p><strong>1. ¿De dónde es Leo?</strong></p>
+                <label><input type="radio" name="q1" value="a"> De Sevilla</label>
+                <label><input type="radio" name="q1" value="b" data-correcta="true"> De Hong Kong</label>
+                <label><input type="radio" name="q1" value="c"> De España</label>
+            </div>
+            <div class="pregunta">
+                <p><strong>2. ¿Qué ve Leo desde la ventana de su habitación?</strong></p>
+                <label><input type="radio" name="q2" value="a" data-correcta="true"> La Giralda</label>
+                <label><input type="radio" name="q2" value="b"> El cielo azul</label>
+                <label><input type="radio" name="q2" value="c"> Un taxi</label>
+            </div>
+            <button type="submit" class="quiz-submit-btn">Verificar Respuestas</button>
+        </form>
+        <div id="resultado-quiz-1" class="resultado-quiz"></div>
+    </div>

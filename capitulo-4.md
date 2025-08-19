@@ -40,17 +40,17 @@ layout: chapter title: "Capítulo 4: Un paseo por Santa Cruz"
 <form class="quiz-form">
 <div class="pregunta">
 <p><strong>1. ¿Cómo son las calles en el barrio de Santa Cruz?</strong></p>
-<label><input type="radio" name="q1" value="a"> Anchas y modernas</label><br>
-<label><input type="radio" name="q1" value="b" data-correcta="true"> Estrechas y antiguas</label><br>
-<label><input type="radio" name="q1" value="c"> Como en Hong Kong</label><br>
+<label><input type="radio" name="q1" value="a"> Anchas y modernas</label>
+<label><input type="radio" name="q1" value="b" data-correcta="true"> Estrechas y antiguas</label>
+<label><input type="radio" name="q1" value="c"> Como en Hong Kong</label>
 </div>
 <div class="pregunta">
 <p><strong>2. ¿Qué le pasa a Leo en el barrio?</strong></p>
-<label><input type="radio" name="q2" value="a"> Encuentra a su amiga Carmen</label><br>
-<label><input type="radio" name="q2" value="b"> Come tapas</label><br>
-<label><input type="radio" name="q2" value="c" data-correcta="true"> Se pierde</label><br>
+<label><input type="radio" name="q2" value="a"> Encuentra a su amiga Carmen</label>
+<label><input type="radio" name="q2" value="b"> Come tapas</label>
+<label><input type="radio" name="q2" value="c" data-correcta="true"> Se pierde</label>
 </div>
-<button type="submit">Verificar Respuestas</button>
+<button type="submit" class="quiz-submit-btn">Verificar Respuestas</button>
 </form>
 <div class="resultado-quiz"></div>
 </div>
