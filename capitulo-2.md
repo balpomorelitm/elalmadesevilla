@@ -45,17 +45,17 @@ title: "Capítulo 1: Un piso en Sevilla"
 <form class="quiz-form">
 <div class="pregunta">
 <p><strong>1. ¿Cómo se llama la profesora?</strong></p>
-<label><input type="radio" name="q1" value="a"> Carmen</label><br>
-<label><input type="radio" name="q1" value="b" data-correcta="true"> Isabel</label><br>
-<label><input type="radio" name="q1" value="c"> Elena</label><br>
+<label><input type="radio" name="q1" value="a"> Carmen</label>
+<label><input type="radio" name="q1" value="b" data-correcta="true"> Isabel</label>
+<label><input type="radio" name="q1" value="c"> Elena</label>
 </div>
 <div class="pregunta">
 <p><strong>2. ¿Qué le enseña Leo a Carmen en el descanso?</strong></p>
-<label><input type="radio" name="q2" value="a"> Un libro de Hong Kong</label><br>
-<label><input type="radio" name="q2" value="b"> Su mochila nueva</label><br>
-<label><input type="radio" name="q2" value="c" data-correcta="true"> La foto antigua</label><br>
+<label><input type="radio" name="q2" value="a"> Un libro de Hong Kong</label>
+<label><input type="radio" name="q2" value="b"> Su mochila nueva</label>
+<label><input type="radio" name="q2" value="c" data-correcta="true"> La foto antigua</label>
 </div>
-<button type="submit">Verificar Respuestas</button>
+<button type="submit" class="quiz-submit-btn">Verificar Respuestas</button>
 </form>
 <div class="resultado-quiz"></div>
 </div>

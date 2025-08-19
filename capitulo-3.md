@@ -40,17 +40,17 @@ layout: chapter title: "Capítulo 3: ¿Qué es una tapa?"
 <form class="quiz-form">
 <div class="pregunta">
 <p><strong>1. ¿Qué es una "tapa"?</strong></p>
-<label><input type="radio" name="q1" value="a" data-correcta="true"> Comida pequeña</label><br>
-<label><input type="radio" name="q1" value="b"> Una bebida grande</label><br>
-<label><input type="radio" name="q1" value="c"> Un libro de la escuela</label><br>
+<label><input type="radio" name="q1" value="a" data-correcta="true"> Comida pequeña</label>
+<label><input type="radio" name="q1" value="b"> Una bebida grande</label>
+<label><input type="radio" name="q1" value="c"> Un libro de la escuela</label>
 </div>
 <div class="pregunta">
 <p><strong>2. ¿Qué comen Leo y sus amigos en el bar?</strong></p>
-<label><input type="radio" name="q2" value="a"> Sándwiches</label><br>
-<label><input type="radio" name="q2" value="b" data-correcta="true"> Tortilla de patatas y gazpacho</label><br>
-<label><input type="radio" name="q2" value="c"> Comida de Hong Kong</label><br>
+<label><input type="radio" name="q2" value="a"> Sándwiches</label>
+<label><input type="radio" name="q2" value="b" data-correcta="true"> Tortilla de patatas y gazpacho</label>
+<label><input type="radio" name="q2" value="c"> Comida de Hong Kong</label>
 </div>
-<button type="submit">Verificar Respuestas</button>
+<button type="submit" class="quiz-submit-btn">Verificar Respuestas</button>
 </form>
 <div class="resultado-quiz"></div>
 </div>
