@@ -249,3 +249,27 @@ function initializeReactions() {
         });
     });
 }
+
+function optimizeLoading() {
+    // Lazy load images if any
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.loading = 'lazy';
+    });
+
+    // Preload next chapter
+    const currentChapter = window.location.pathname.match(/capitulo-(\d+)/);
+    if (currentChapter) {
+        const nextChapter = parseInt(currentChapter[1]) + 1;
+        if (nextChapter <= 8) {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.href = `capitulo-${nextChapter}.html`;
+            document.head.appendChild(link);
+        }
+    }
+}
+
+// Call on load
+window.addEventListener('load', optimizeLoading);
+
