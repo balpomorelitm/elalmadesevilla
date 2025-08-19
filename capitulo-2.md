@@ -1,14 +1,17 @@
 ---
 layout: chapter
-title: "Capítulo 1: Un piso en Sevilla"
+title: "Capítulo 2: La escuela de español"
+chapter_number: 2
+audio_file: /assets/audio/capitulo-2.mp3
 ---
 <!-- Botón para mostrar/ocultar Emojis -->
 
 <button id="emoji-toggle" class="emoji-toggle-button">Mostrar Emojis 💡</button>
 
-<!-- Reproductor de Audio (añadir ruta del audio cuando esté listo) -->
-
-<!-- <audio controls src="/assets/audio/capitulo-2.mp3"></audio> -->
+<!-- Reproductor de Audio -->
+<audio controls src="{{ page.audio_file }}">
+    Tu navegador no soporta el audio.
+</audio>
 
 <hr>
 

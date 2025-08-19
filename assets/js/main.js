@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
+    initializeGlossary();
+    initializeEmojiToggle();
+    initializeQuizzes();
+    initializeReactions();
+});
 
-    // --- LÓGICA PARA EL GLOSARIO INTERACTIVO ---
+function initializeGlossary() {
     const terminos = document.querySelectorAll('.glosa');
     terminos.forEach(termino => {
         const tooltip = document.createElement('span');
@@ -8,8 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
         tooltip.textContent = termino.getAttribute('data-definicion');
         termino.appendChild(tooltip);
     });
+}
 
-    // --- LÓGICA PARA MOSTRAR/OCULTAR EMOJIS ---
+function initializeEmojiToggle() {
     const emojiToggleButton = document.getElementById('emoji-toggle');
     if (emojiToggleButton) {
         let emojisVisibles = false;
@@ -32,20 +38,21 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 document.querySelectorAll('.emoji-icono').forEach(icono => icono.remove());
             }
-            
+
             this.textContent = emojisVisibles ? 'Ocultar Emojis 🙈' : 'Mostrar Emojis 💡';
         });
     }
+}
 
-    // --- LÓGICA GENÉRICA PARA TODOS LOS QUIZZES ---
+function initializeQuizzes() {
     const quizForms = document.querySelectorAll('.quiz-form');
     quizForms.forEach(form => {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
-            
+
             let correctas = 0;
             const preguntas = form.querySelectorAll('.pregunta');
-            
+
             preguntas.forEach((pregunta, index) => {
                 const inputSeleccionado = pregunta.querySelector(`input[name="q${index + 1}"]:checked`);
                 // Limpia estilos previos
@@ -66,4 +73,22 @@ document.addEventListener('DOMContentLoaded', function() {
             resultadoDiv.textContent = `Has acertado ${correctas} de ${preguntas.length} preguntas.`;
         });
     });
-});
+}
+
+function initializeReactions() {
+    const reactionButtons = document.querySelectorAll('.reacciones button');
+    reactionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            let countSpan = button.querySelector('.reaction-count');
+            if (!countSpan) {
+                countSpan = document.createElement('span');
+                countSpan.classList.add('reaction-count');
+                countSpan.textContent = '1';
+                button.appendChild(document.createTextNode(' '));
+                button.appendChild(countSpan);
+            } else {
+                countSpan.textContent = parseInt(countSpan.textContent, 10) + 1;
+            }
+        });
+    });
+}
