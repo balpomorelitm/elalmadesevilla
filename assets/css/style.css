@@ -1,0 +1,109 @@
+/* Estilo general del cuerpo */
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Estilos para Glosario y Emojis --- */
+
+/* Botón para mostrar/ocultar emojis */
+.emoji-toggle-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 1em;
+}
+
+/* Estilo para el emoji que aparece */
+.emoji-icono {
+    font-size: 1.2em;
+    margin-left: 4px;
+    display: inline-block;
+    color: #555;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Estilo para las palabras con glosa */
+.glosa {
+    border-bottom: 2px dotted #ff8c00;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Estilo para el cuadro de la definición (tooltip) */
+.glosa-tooltip {
+    visibility: hidden;
+    width: 160px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.glosa-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.glosa:hover .glosa-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* --- Estilos para Reacciones y Quiz --- */
+
+.reacciones button {
+    font-size: 1.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.reacciones button:hover {
+    transform: scale(1.2);
+}
+
+.quiz {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.quiz .pregunta {
+    margin-bottom: 15px;
+}
+
+.resultado-quiz {
+    margin-top: 15px;
+    font-weight: bold;
+}
