@@ -66,4 +66,37 @@ document.addEventListener('DOMContentLoaded', function() {
             resultadoDiv.textContent = `Has acertado ${correctas} de ${preguntas.length} preguntas.`;
         });
     });
+    initializeReactions();
 });
+
+function initializeReactions() {
+    const reactionButtons = document.querySelectorAll('.reacciones button');
+
+    reactionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.add('clicked');
+
+            // Remove animation class after animation completes
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 600);
+
+            // Optional: Save reaction to localStorage
+            const chapter = document.querySelector('h1').textContent;
+            const reaction = this.textContent;
+            saveReaction(chapter, reaction);
+        });
+    });
+}
+
+function saveReaction(chapter, reaction) {
+    const reactions = JSON.parse(localStorage.getItem('bookReactions') || '{}');
+    if (!reactions[chapter]) {
+        reactions[chapter] = [];
+    }
+    reactions[chapter].push({
+        reaction: reaction,
+        timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('bookReactions', JSON.stringify(reactions));
+}

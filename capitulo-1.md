@@ -9,9 +9,11 @@ audio_file: /assets/audio/capitulo-1.mp3
 <button id="emoji-toggle" class="emoji-toggle-button">Mostrar Emojis 💡</button>
 
 <!-- Reproductor de Audio -->
-<audio controls src="{{ page.audio_file }}">
-    Tu navegador no soporta el audio.
-</audio>
+<div class="audio-player">
+    <audio controls src="{{ page.audio_file }}">
+        Tu navegador no soporta el audio.
+    </audio>
+</div>
 
 <hr>
 
