@@ -10,7 +10,7 @@ audio_file: /assets/audio/capitulo-2.mp3
 
 <!-- Reproductor de Audio (añadir ruta del audio cuando esté listo) -->
 
-<!-- <audio controls src="/assets/audio/capitulo-2.mp3"></audio> -->
+<!-- <div class="audio-player"><audio controls src="/assets/audio/capitulo-2.mp3"></audio></div> -->
 
 <hr>
 

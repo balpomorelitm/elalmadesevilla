@@ -44,6 +44,7 @@ function initializeEmojiToggle() {
         emojisVisibles = !emojisVisibles;
         const palabrasConEmoji = document.querySelectorAll('.emoji-word');
 
+
         if (emojisVisibles) {
             showEmojis(palabrasConEmoji);
             this.innerHTML = 'Ocultar Emojis 🙈';
@@ -169,6 +170,66 @@ function showQuizResults(form, correctas, total) {
     setTimeout(() => {
         resultadoDiv.classList.add('show');
     }, 100);
+    
+    // Scroll to results
+    resultadoDiv.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+    });
+}
+
+function initializeReactions() {
+    const reactionButtons = document.querySelectorAll('.reacciones button');
+
+    reactionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.add('clicked');
+
+            // Remove animation class after animation completes
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 600);
+
+            // Optional: Save reaction to localStorage
+            const chapter = document.querySelector('h1').textContent;
+            const reaction = this.textContent;
+            saveReaction(chapter, reaction);
+        });
+    });
+}
+
+function saveReaction(chapter, reaction) {
+    const reactions = JSON.parse(localStorage.getItem('bookReactions') || '{}');
+    if (!reactions[chapter]) {
+        reactions[chapter] = [];
+    }
+    reactions[chapter].push({
+        reaction: reaction,
+        timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('bookReactions', JSON.stringify(reactions));
+}
+
+function initializeEmojiToggle() {
+    const emojiToggleButton = document.getElementById('emoji-toggle');
+    if (!emojiToggleButton) return;
+    
+    let emojisVisibles = false;
+    
+    emojiToggleButton.addEventListener('click', function() {
+        emojisVisibles = !emojisVisibles;
+        const palabrasConEmoji = document.querySelectorAll('.emoji-word');
+        
+        if (emojisVisibles) {
+            showEmojis(palabrasConEmoji);
+            this.innerHTML = 'Ocultar Emojis 🙈';
+        } else {
+            hideEmojis();
+            this.innerHTML = 'Mostrar Emojis 💡';
+        }
+    });
+}
+
 
     resultadoDiv.scrollIntoView({
         behavior: 'smooth',
