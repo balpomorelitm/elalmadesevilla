@@ -1,13 +1,37 @@
-document.addEventListener('DOMContentLoaded', function() {
-
-    // --- LÓGICA PARA EL GLOSARIO INTERACTIVO ---
+function initializeGlossary() {
     const terminos = document.querySelectorAll('.glosa');
+
     terminos.forEach(termino => {
+        // Remove existing tooltip if any
+        const existingTooltip = termino.querySelector('.glosa-tooltip');
+        if (existingTooltip) existingTooltip.remove();
+
         const tooltip = document.createElement('span');
         tooltip.classList.add('glosa-tooltip');
         tooltip.textContent = termino.getAttribute('data-definicion');
         termino.appendChild(tooltip);
+
+        // Add click support for mobile
+        termino.addEventListener('click', function(e) {
+            e.preventDefault();
+            const allTooltips = document.querySelectorAll('.glosa-tooltip');
+            allTooltips.forEach(t => t.style.visibility = 'hidden');
+            tooltip.style.visibility = 'visible';
+            tooltip.style.opacity = '1';
+
+            // Hide after 3 seconds on mobile
+            setTimeout(() => {
+                tooltip.style.visibility = 'hidden';
+                tooltip.style.opacity = '0';
+            }, 3000);
+        });
     });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    // --- LÓGICA PARA EL GLOSARIO INTERACTIVO ---
+    initializeGlossary();
 
     // --- LÓGICA PARA MOSTRAR/OCULTAR EMOJIS ---
     const emojiToggleButton = document.getElementById('emoji-toggle');
