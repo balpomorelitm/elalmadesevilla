@@ -10,32 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // --- LÓGICA PARA MOSTRAR/OCULTAR EMOJIS ---
-    const emojiToggleButton = document.getElementById('emoji-toggle');
-    if (emojiToggleButton) {
-        let emojisVisibles = false;
-
-        emojiToggleButton.addEventListener('click', function() {
-            emojisVisibles = !emojisVisibles;
-            const palabrasConEmoji = document.querySelectorAll('.emoji-word');
-
-            if (emojisVisibles) {
-                palabrasConEmoji.forEach(palabra => {
-                    // Evita añadir emojis duplicados
-                    if (!palabra.nextElementSibling || !palabra.nextElementSibling.classList.contains('emoji-icono')) {
-                        const emoji = palabra.getAttribute('data-emoji');
-                        const emojiSpan = document.createElement('span');
-                        emojiSpan.classList.add('emoji-icono');
-                        emojiSpan.textContent = emoji;
-                        palabra.insertAdjacentElement('afterend', emojiSpan);
-                    }
-                });
-            } else {
-                document.querySelectorAll('.emoji-icono').forEach(icono => icono.remove());
-            }
-            
-            this.textContent = emojisVisibles ? 'Ocultar Emojis 🙈' : 'Mostrar Emojis 💡';
-        });
-    }
+    initializeEmojiToggle();
 
     // --- LÓGICA GENÉRICA PARA TODOS LOS QUIZZES ---
     const quizForms = document.querySelectorAll('.quiz-form');
@@ -67,3 +42,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function initializeEmojiToggle() {
+    const emojiToggleButton = document.getElementById('emoji-toggle');
+    if (!emojiToggleButton) return;
+
+    let emojisVisibles = false;
+
+    emojiToggleButton.addEventListener('click', function() {
+        emojisVisibles = !emojisVisibles;
+        const palabrasConEmoji = document.querySelectorAll('.emoji-word');
+
+        if (emojisVisibles) {
+            showEmojis(palabrasConEmoji);
+            this.innerHTML = 'Ocultar Emojis 🙈';
+        } else {
+            hideEmojis();
+            this.innerHTML = 'Mostrar Emojis 💡';
+        }
+    });
+}
+
+function showEmojis(palabrasConEmoji) {
+    palabrasConEmoji.forEach((palabra, index) => {
+        // Avoid duplicate emojis
+        if (palabra.nextElementSibling && palabra.nextElementSibling.classList.contains('emoji-icono')) {
+            return;
+        }
+
+        const emoji = palabra.getAttribute('data-emoji');
+        if (emoji) {
+            const emojiSpan = document.createElement('span');
+            emojiSpan.classList.add('emoji-icono');
+            emojiSpan.textContent = emoji;
+
+            // Add staggered animation delay
+            emojiSpan.style.animationDelay = `${index * 0.1}s`;
+
+            palabra.insertAdjacentElement('afterend', emojiSpan);
+        }
+    });
+}
+
+function hideEmojis() {
+    const emojis = document.querySelectorAll('.emoji-icono');
+    emojis.forEach((emoji, index) => {
+        emoji.classList.add('removing');
+        emoji.style.animationDelay = `${index * 0.05}s`;
+
+        setTimeout(() => {
+            if (emoji.parentNode) {
+                emoji.remove();
+            }
+        }, 300 + (index * 50));
+    });
+}
