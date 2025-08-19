@@ -20,11 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (emojisVisibles) {
                 palabrasConEmoji.forEach(palabra => {
-                    const emoji = palabra.getAttribute('data-emoji');
-                    const emojiSpan = document.createElement('span');
-                    emojiSpan.classList.add('emoji-icono');
-                    emojiSpan.textContent = emoji;
-                    palabra.insertAdjacentElement('afterend', emojiSpan);
+                    // Evita añadir emojis duplicados
+                    if (!palabra.nextElementSibling || !palabra.nextElementSibling.classList.contains('emoji-icono')) {
+                        const emoji = palabra.getAttribute('data-emoji');
+                        const emojiSpan = document.createElement('span');
+                        emojiSpan.classList.add('emoji-icono');
+                        emojiSpan.textContent = emoji;
+                        palabra.insertAdjacentElement('afterend', emojiSpan);
+                    }
                 });
             } else {
                 document.querySelectorAll('.emoji-icono').forEach(icono => icono.remove());
@@ -34,23 +37,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- LÓGICA PARA EL QUIZ DE COMPRENSIÓN ---
-    const quizForm = document.getElementById('quiz-capitulo-1');
-    if (quizForm) {
-        quizForm.addEventListener('submit', function(event) {
+    // --- LÓGICA GENÉRICA PARA TODOS LOS QUIZZES ---
+    const quizForms = document.querySelectorAll('.quiz-form');
+    quizForms.forEach(form => {
+        form.addEventListener('submit', function(event) {
             event.preventDefault();
+            
             let correctas = 0;
-            const preguntas = quizForm.querySelectorAll('.pregunta');
+            const preguntas = form.querySelectorAll('.pregunta');
             
             preguntas.forEach((pregunta, index) => {
                 const inputSeleccionado = pregunta.querySelector(`input[name="q${index + 1}"]:checked`);
-                if (inputSeleccionado && inputSeleccionado.hasAttribute('data-correcta')) {
-                    correctas++;
+                // Limpia estilos previos
+                pregunta.querySelectorAll('label').forEach(label => label.style.color = 'inherit');
+
+                if (inputSeleccionado) {
+                    const labelSeleccionada = inputSeleccionado.parentElement;
+                    if (inputSeleccionado.hasAttribute('data-correcta')) {
+                        correctas++;
+                        labelSeleccionada.style.color = 'green';
+                    } else {
+                        labelSeleccionada.style.color = 'red';
+                    }
                 }
             });
 
-            const resultadoDiv = document.getElementById('resultado-quiz-1');
+            const resultadoDiv = form.nextElementSibling;
             resultadoDiv.textContent = `Has acertado ${correctas} de ${preguntas.length} preguntas.`;
         });
-    }
+    });
 });
