@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo 2: La escuela y el concurso</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div class="container">
@@ -83,6 +83,20 @@
                     <label><input type="radio" name="q6" value="c"> Dinero</label>
                 </div>
 
+                <div class="pregunta">
+                    <p>7. ¿Qué error cometía Panda antes?</p>
+                    <label><input type="radio" name="q7" value="a"> Decía "ratón" en lugar de "rato"</label>
+                    <label><input type="radio" name="q7" value="b" data-correcta="true"> Decía "rata" en lugar de "rato"</label>
+                    <label><input type="radio" name="q7" value="c"> No sabía hablar español</label>
+                </div>
+
+                <div class="pregunta">
+                    <p>8. ¿Cómo es la clase según Leo?</p>
+                    <label><input type="radio" name="q8" value="a"> Muy fácil</label>
+                    <label><input type="radio" name="q8" value="b" data-correcta="true"> Difícil</label>
+                    <label><input type="radio" name="q8" value="c"> Aburrida</label>
+                </div>
+
                 <button type="submit">Comprobar respuestas</button>
             </form>
             <div class="resultado-quiz"></div>
@@ -103,6 +117,6 @@
         </nav>
     </div>
 
-    <script src="main.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
