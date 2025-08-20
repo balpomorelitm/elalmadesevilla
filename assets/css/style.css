@@ -133,7 +133,7 @@ h1, h2, h3, h4 {
     text-align: justify !important;
 }
 .chapter-content p {
-    margin-bottom: 13px; 
+    margin-bottom: 9px; 
     text-align: justify !important;
     text-indent: 2.0em; 
     font-style: normal !important;
@@ -222,7 +222,7 @@ h1, h2, h3, h4 {
 /* Emojis que aparecen */
 .emoji-icono {
     font-size: 1.3em;
-    margin-left: 3px;
+    margin-left: 1px;
     display: inline-block;
     animation: emojiAppear 0.5s ease;
     filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
