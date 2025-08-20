@@ -23,7 +23,7 @@
 /* Cuerpo principal */
 body {
     font-family: 'Crimson Text', serif;
-    font-size: 36px; /* CAMBIO: era 18px, ahora 36px (doble) */
+    font-size: 36px; 
     line-height: 1.7;
     color: var(--text-primary);
     background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
@@ -32,9 +32,9 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 45px 45px; /* CAMBIO: de 80px a 60px (más moderado) */
+    padding: 40px 40px; 
     background: var(--paper-bg);
     border-radius: 8px;
     box-shadow: 
@@ -53,7 +53,7 @@ body {
     content: '';
     position: absolute;
     top: 0;
-    left: 45px; /* CAMBIO: de 80px a 60px */
+    left: 40px; 
     width: 2px;
     height: 100%;
     background: linear-gradient(to bottom, 
