@@ -23,7 +23,7 @@
 /* Cuerpo principal */
 body {
     font-family: 'Crimson Text', serif;
-    font-size: 36px; 
+    font-size: 32px; 
     line-height: 1.7;
     color: var(--text-primary);
     background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
@@ -90,7 +90,7 @@ h1::after {
 /* Primera letra grande (Drop cap) */
 .chapter-content p:first-child::first-letter {
     float: left;
-    font-size: 8em; /* CAMBIO: era 4em, ahora 8em (proporcional al texto doble) */
+    font-size: 6em; 
     line-height: 0.6; /* CAMBIO: era 0.8, ahora 0.6 (más arriba) */
     padding: 4px 12px 0 0; /* CAMBIO: era 8px 8px 0 0, ahora menos padding arriba */
     margin: 4px 12px 0 0; /* CAMBIO: era 8px 8px 0 0, ahora menos margin arriba */
@@ -272,7 +272,7 @@ h1::after {
     border-left: 4px solid var(--glosa-color);
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     font-family: 'Crimson Text', serif;
-    font-size: 25px; 
+    font-size: 22px; 
     line-height: 1.8;
 }
 
