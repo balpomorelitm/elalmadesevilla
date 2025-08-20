@@ -731,3 +731,185 @@ h1::after {
         padding: 12px;
     }
 }
+/* Estilo del título principal del índice */
+.container h1 {
+    font-family: 'Crimson Text', serif;
+    font-size: 3em;
+    font-weight: 600;
+    color: var(--accent-blue);
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.container h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--accent-warm), transparent);
+}
+
+/* Subtítulo del índice */
+.container h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8em;
+    font-weight: 500;
+    color: var(--accent-blue);
+    text-align: center;
+    margin: 40px 0 50px 0;
+}
+
+/* Descripción de bienvenida */
+.container p {
+    font-size: 1.1em;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 50px;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+}
+
+/* Contenedor de la lista de capítulos */
+.chapter-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+    padding: 0;
+}
+
+/* Botones de capítulos */
+.chapter-list a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 25px 30px;
+    background: linear-gradient(135deg, 
+        rgba(74, 85, 104, 0.1) 0%, 
+        rgba(74, 85, 104, 0.05) 100%);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Efecto de fondo animado */
+.chapter-list a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        var(--accent-blue) 0%, 
+        #2d3748 100%);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+/* Número del capítulo */
+.chapter-list a::after {
+    content: attr(data-chapter);
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--accent-warm);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9em;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+/* Estados hover */
+.chapter-list a:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    border-color: var(--accent-blue);
+    color: white;
+}
+
+.chapter-list a:hover::before {
+    left: 0;
+}
+
+.chapter-list a:hover::after {
+    background: white;
+    color: var(--accent-blue);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Estados active/focus */
+.chapter-list a:active {
+    transform: translateY(-4px) scale(0.98);
+}
+
+.chapter-list a:focus {
+    outline: 3px solid rgba(74, 85, 104, 0.3);
+    outline-offset: 4px;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .chapter-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 30px;
+    }
+    
+    .chapter-list a {
+        padding: 20px 25px;
+        font-size: 1em;
+    }
+    
+    .chapter-list a::after {
+        width: 30px;
+        height: 30px;
+        right: 20px;
+        font-size: 0.8em;
+    }
+    
+    .container h1 {
+        font-size: 2.5em;
+    }
+    
+    .container h2 {
+        font-size: 1.5em;
+        margin: 30px 0 40px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .chapter-list {
+        gap: 12px;
+    }
+    
+    .chapter-list a {
+        padding: 18px 20px;
+        font-size: 0.95em;
+    }
+    
+    .container h1 {
+        font-size: 2.2em;
+    }
+}
