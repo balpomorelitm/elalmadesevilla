@@ -25,7 +25,7 @@ body {
     font-family: 'Crimson Text', serif;
     font-style: normal; 
     font-weight: 400;   
-    font-size: 28px; 
+    font-size: 24px; 
     line-height: 1.7;
     color: var(--text-primary);
     background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
@@ -35,7 +35,7 @@ body {
 
 .container {
     max-width: 1200px;
-    margin: 0 0 0 100px;
+    margin: 40px auto;
     padding: 40px 40px; 
     background: var(--paper-bg);
     border-radius: 8px;
@@ -104,9 +104,9 @@ h1::after {
 
 /* Párrafos */
 .chapter-content p {
-    margin-bottom: 30px; /* CAMBIO: era 20px, ahora 30px */
-    text-align: left;
-    text-indent: 2.5em; /* CAMBIO: era 1.5em, ahora proporcional */
+    margin-bottom: 25px; 
+    text-align: justify;
+    text-indent: 2.0em; 
     font-style: normal !important;
 }
 
