@@ -31,11 +31,10 @@ body {
     padding: 20px 0;
 }
 
-/* Contenedor principal */
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 60px 80px; /* CAMBIO: era 60px 50px, ahora más margen izquierdo/derecho */
+    padding: 60px 60px; /* CAMBIO: de 80px a 60px (más moderado) */
     background: var(--paper-bg);
     border-radius: 8px;
     box-shadow: 
@@ -49,12 +48,12 @@ body {
     background-size: 40px 30px;
 }
 
-/* También cambiar el margen del borde de papel: */
+/* Borde de papel - CORREGIDO */
 .container::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 80px; /* CAMBIO: era 50px, ahora 80px */
+    left: 60px; /* CAMBIO: de 80px a 60px */
     width: 2px;
     height: 100%;
     background: linear-gradient(to bottom, 
@@ -63,6 +62,7 @@ body {
         rgba(220, 38, 127, 0.2) 90%, 
         transparent 100%);
 }
+
 
 /* Títulos */
 h1 {
@@ -646,7 +646,7 @@ h1::after {
 @media (max-width: 768px) {
     .container {
         margin: 10px;
-        padding: 30px 40px;
+        padding: 30px 35px; 
         border-radius: 6px;
     }
     
@@ -715,11 +715,11 @@ h1::after {
 @media (max-width: 480px) {
     .container {
         margin: 5px;
-        padding: 20px 15px;
+        padding: 20px 25px; /* CAMBIO: de 15px a 25px para que no sea demasiado estrecho */
     }
     
     .container::before {
-        left: 15px;
+        left: 25px; /* CAMBIO: coherencia */
     }
     
     .chapter-content p:first-child::first-letter {
