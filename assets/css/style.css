@@ -105,7 +105,7 @@ h1::after {
 /* Párrafos */
 .chapter-content p {
     margin-bottom: 30px; /* CAMBIO: era 20px, ahora 30px */
-    text-align: justify;
+    text-align: left;
     text-indent: 2.5em; /* CAMBIO: era 1.5em, ahora proporcional */
     font-style: normal !important;
 }
@@ -184,7 +184,7 @@ h1::after {
 /* Emojis que aparecen */
 .emoji-icono {
     font-size: 1.3em;
-    margin-left: 6px;
+    margin-left: 3px;
     display: inline-block;
     animation: emojiAppear 0.5s ease;
     filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
