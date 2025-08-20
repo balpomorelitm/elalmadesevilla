@@ -1,22 +1,22 @@
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo 10: Adiós, Sevilla</title>
+    <title>Chapter 10: Adiós, Sevilla</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-link">← Volver al índice</a>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <h1>Capítulo 10: Adiós, Sevilla</h1>
+        <h1>Chapter 10: Adiós, Sevilla</h1>
         
-        <button id="emoji-toggle" class="emoji-toggle-button">Mostrar Emojis 💡</button>
+        <button id="emoji-toggle" class="emoji-toggle-button">Show Emojis 💡</button>
         
         <div class="audio-player">
             <audio controls>
                 <source src="assets/audio/capitulo-10.mp3" type="audio/mpeg">
-                Tu navegador no soporta audio HTML5.
+                Your browser does not support HTML5 audio.
             </audio>
         </div>
         
@@ -103,13 +103,13 @@
                     <label><input type="radio" name="q8" value="c"> Como un lugar que quiere olvidar</label>
                 </div>
 
-                <button type="submit">Comprobar respuestas</button>
+                <button type="submit">Check answers</button>
             </form>
             <div class="resultado-quiz"></div>
         </div>
 
         <div class="reacciones">
-            <p>¿Cómo te ha parecido este capítulo final?</p>
+            <p>What did you think of this final chapter?</p>
             <button>😍</button>
             <button>😊</button>
             <button>😐</button>
@@ -118,13 +118,13 @@
         </div>
 
         <div class="final-message">
-            <h3>🎉 ¡Felicidades! Has terminado la historia de Leo en Sevilla</h3>
-            <p>Espero que hayas disfrutado de este viaje por España y que hayas aprendido mucho español. ¡El viaje del aprendizaje continúa!</p>
+            <h3>🎉 Congratulations! You have finished Leo's story in Seville</h3>
+            <p>I hope you enjoyed this journey through Spain and learned a lot of Spanish. The learning journey continues!</p>
         </div>
 
         <nav class="chapter-nav">
-            <a href="capitulo-9.html" class="prev-chapter">← Anterior: Capítulo 9</a>
-            <a href="index.html" class="back-to-index">🏠 Volver al inicio</a>
+            <a href="capitulo-9.html" class="prev-chapter">← Previous: Chapter 9</a>
+            <a href="index.html" class="back-to-index">🏠 Back to Home</a>
         </nav>
     </div>
 

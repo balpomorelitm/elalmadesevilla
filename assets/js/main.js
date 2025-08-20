@@ -39,9 +39,9 @@ function createGlossarySection() {
     const glossarySection = document.createElement('div');
     glossarySection.classList.add('glossary-section', 'empty');
     glossarySection.innerHTML = `
-        <h3>📖 Glosario de palabras seleccionadas</h3>
+        <h3>📖 Glossary of Selected Words</h3>
         <div class="glossary-list"></div>
-        <button class="clear-glossary" onclick="clearAllGlossary()">Limpiar glosario</button>
+        <button class="clear-glossary" onclick="clearAllGlossary()">Clear glossary</button>
     `;
     
     if (quizSection) {
@@ -153,10 +153,10 @@ function initializeEmojiToggle() {
         
         if (globalEmojiMode) {
             showAllEmojis(palabrasConEmoji);
-            this.innerHTML = 'Ocultar Emojis 🙈';
+            this.innerHTML = 'Hide Emojis 🙈';
         } else {
             hideAllEmojis();
-            this.innerHTML = 'Mostrar Emojis 💡';
+            this.innerHTML = 'Show Emojis 💡';
         }
     });
     
@@ -291,21 +291,21 @@ function showQuizResults(form, correctas, total) {
     
     resultadoDiv.classList.remove('perfect', 'good', 'needs-improvement', 'show');
     
-    let message = `Has acertado ${correctas} de ${total} preguntas (${percentage.toFixed(0)}%)`;
+    let message = `You answered ${correctas} out of ${total} questions correctly (${percentage.toFixed(0)}%)`;
     let feedback = '';
     let cssClass = '';
     
     if (percentage === 100) {
-        feedback = ' ¡Perfecto! 🎉';
+        feedback = ' Perfect! 🎉';
         cssClass = 'perfect';
     } else if (percentage >= 70) {
-        feedback = ' ¡Muy bien! 👏';
+        feedback = ' Very good! 👏';
         cssClass = 'good';
     } else if (percentage >= 50) {
-        feedback = ' Bien, pero puedes mejorar 📚';
+        feedback = ' Good, but you can improve 📚';
         cssClass = 'good';
     } else {
-        feedback = ' Necesitas repasar más 💪';
+        feedback = ' You need to review more 💪';
         cssClass = 'needs-improvement';
     }
     
