@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     initializeEmojiToggle();
-    initializeGlossaryClick(); // Nueva función corregida
+    initializeGlossaryClick();
     initializeQuizzes();
     initializeReactions();
-    createGlossarySection(); // Crear sección de glosario al pie
+    createGlossarySection();
 });
 
-// NUEVA FUNCIONALIDAD: Glosas que aparecen al pie del texto
+// FUNCIONALIDAD: Glosas que aparecen al pie del texto con bullet points
 function initializeGlossaryClick() {
     const terminos = document.querySelectorAll('.glosa');
     
@@ -31,7 +31,6 @@ function initializeGlossaryClick() {
 
 // Crear sección de glosario al pie del capítulo
 function createGlossarySection() {
-    // Buscar dónde insertar el glosario (antes del quiz)
     const quizSection = document.querySelector('.quiz');
     const container = document.querySelector('.chapter-content');
     
@@ -45,7 +44,6 @@ function createGlossarySection() {
         <button class="clear-glossary" onclick="clearAllGlossary()">Limpiar glosario</button>
     `;
     
-    // Insertar después del contenido del capítulo, antes del quiz
     if (quizSection) {
         quizSection.parentNode.insertBefore(glossarySection, quizSection);
     } else {
@@ -53,7 +51,7 @@ function createGlossarySection() {
     }
 }
 
-// Añadir palabra al glosario
+// Añadir palabra al glosario - FORMATO BULLET POINTS
 function addToGlossary(word, definition) {
     const glossarySection = document.querySelector('.glossary-section');
     const glossaryList = document.querySelector('.glossary-list');
@@ -62,14 +60,13 @@ function addToGlossary(word, definition) {
     const existingItem = glossaryList.querySelector(`[data-word="${word}"]`);
     if (existingItem) return;
     
-    // Crear nuevo item del glosario
+    // Crear nuevo item del glosario con formato bullet point
     const glossaryItem = document.createElement('div');
     glossaryItem.classList.add('glossary-item');
     glossaryItem.setAttribute('data-word', word);
-    glossaryItem.innerHTML = `
-        <div class="glossary-word">${word}</div>
-        <div class="glossary-definition">${definition}</div>
-    `;
+    
+    // Formato: • palabra: definición
+    glossaryItem.innerHTML = `<span class="glossary-word">${word}</span>: <span class="glossary-definition">${definition}</span>`;
     
     // Añadir con efecto de aparición
     glossaryList.appendChild(glossaryItem);
@@ -100,7 +97,7 @@ function removeFromGlossary(word) {
     if (item) {
         // Animación de salida
         item.style.opacity = '0';
-        item.style.transform = 'translateY(-20px)';
+        item.style.transform = 'translateY(-10px)';
         
         setTimeout(() => {
             item.remove();
@@ -130,8 +127,8 @@ function clearAllGlossary() {
     items.forEach((item, index) => {
         setTimeout(() => {
             item.style.opacity = '0';
-            item.style.transform = 'translateY(-20px)';
-        }, index * 100);
+            item.style.transform = 'translateY(-10px)';
+        }, index * 50);
     });
     
     // Limpiar y ocultar sección
@@ -139,17 +136,17 @@ function clearAllGlossary() {
         glossaryList.innerHTML = '';
         glossarySection.classList.add('empty');
         glossarySection.classList.remove('has-definitions');
-    }, items.length * 100 + 300);
+    }, items.length * 50 + 300);
 }
 
-// FUNCIONALIDAD RENOVADA: Emojis con click en lugar de toggle global
+// FUNCIONALIDAD: Emojis con click individual
 function initializeEmojiToggle() {
     const emojiToggleButton = document.getElementById('emoji-toggle');
     if (!emojiToggleButton) return;
     
     let globalEmojiMode = false;
     
-    // Funcionalidad del botón global (mantener para compatibilidad)
+    // Funcionalidad del botón global
     emojiToggleButton.addEventListener('click', function() {
         globalEmojiMode = !globalEmojiMode;
         const palabrasConEmoji = document.querySelectorAll('.emoji-word');
@@ -163,7 +160,7 @@ function initializeEmojiToggle() {
         }
     });
     
-    // NUEVA FUNCIONALIDAD: Click individual en palabras emoji
+    // Click individual en palabras emoji
     const palabrasConEmoji = document.querySelectorAll('.emoji-word');
     palabrasConEmoji.forEach(palabra => {
         palabra.addEventListener('click', function(e) {
@@ -195,10 +192,9 @@ function initializeEmojiToggle() {
     });
 }
 
-// Mostrar todos los emojis (función del botón global)
+// Mostrar todos los emojis
 function showAllEmojis(palabrasConEmoji) {
     palabrasConEmoji.forEach((palabra, index) => {
-        // Evitar emojis duplicados
         if (palabra.nextElementSibling && palabra.nextElementSibling.classList.contains('emoji-icono')) {
             return;
         }
@@ -209,10 +205,7 @@ function showAllEmojis(palabrasConEmoji) {
             const emojiSpan = document.createElement('span');
             emojiSpan.classList.add('emoji-icono');
             emojiSpan.textContent = emoji;
-            
-            // Animación escalonada
             emojiSpan.style.animationDelay = `${index * 0.1}s`;
-            
             palabra.insertAdjacentElement('afterend', emojiSpan);
         }
     });
@@ -223,12 +216,10 @@ function hideAllEmojis() {
     const emojis = document.querySelectorAll('.emoji-icono');
     const palabrasConEmoji = document.querySelectorAll('.emoji-word.clicked');
     
-    // Remover clase clicked de las palabras
     palabrasConEmoji.forEach(palabra => {
         palabra.classList.remove('clicked');
     });
     
-    // Animar salida de emojis
     emojis.forEach((emoji, index) => {
         emoji.classList.add('removing');
         emoji.style.animationDelay = `${index * 0.05}s`;
@@ -246,7 +237,6 @@ function initializeQuizzes() {
     const quizForms = document.querySelectorAll('.quiz-form');
     
     quizForms.forEach((form, formIndex) => {
-        // Add submit button class
         const submitBtn = form.querySelector('button[type="submit"]');
         if (submitBtn) {
             submitBtn.classList.add('quiz-submit-btn');
@@ -264,7 +254,6 @@ function handleQuizSubmission(form, formIndex) {
     const preguntas = form.querySelectorAll('.pregunta');
     const totalPreguntas = preguntas.length;
     
-    // Reset previous styling
     form.querySelectorAll('label').forEach(label => {
         label.classList.remove('correct', 'incorrect', 'correct-answer');
     });
@@ -282,20 +271,17 @@ function handleQuizSubmission(form, formIndex) {
                 labelSeleccionada.classList.add('correct');
             } else {
                 labelSeleccionada.classList.add('incorrect');
-                // Show correct answer
                 if (correctInput) {
                     correctInput.parentElement.classList.add('correct-answer');
                 }
             }
         } else {
-            // No answer selected, show correct answer
             if (correctInput) {
                 correctInput.parentElement.classList.add('correct-answer');
             }
         }
     });
     
-    // Show results with animation and feedback
     showQuizResults(form, correctas, totalPreguntas);
 }
 
@@ -303,7 +289,6 @@ function showQuizResults(form, correctas, total) {
     const resultadoDiv = form.nextElementSibling;
     const percentage = (correctas / total) * 100;
     
-    // Reset previous classes
     resultadoDiv.classList.remove('perfect', 'good', 'needs-improvement', 'show');
     
     let message = `Has acertado ${correctas} de ${total} preguntas (${percentage.toFixed(0)}%)`;
@@ -327,12 +312,10 @@ function showQuizResults(form, correctas, total) {
     resultadoDiv.textContent = message + feedback;
     resultadoDiv.className = `resultado-quiz ${cssClass}`;
     
-    // Trigger animation
     setTimeout(() => {
         resultadoDiv.classList.add('show');
     }, 100);
     
-    // Scroll to results
     resultadoDiv.scrollIntoView({ 
         behavior: 'smooth', 
         block: 'center' 
@@ -347,12 +330,10 @@ function initializeReactions() {
         button.addEventListener('click', function() {
             this.classList.add('clicked');
             
-            // Remove animation class after animation completes
             setTimeout(() => {
                 this.classList.remove('clicked');
             }, 600);
             
-            // Optional: Save reaction to localStorage
             const chapter = document.querySelector('h1').textContent;
             const reaction = this.textContent;
             saveReaction(chapter, reaction);
@@ -374,13 +355,11 @@ function saveReaction(chapter, reaction) {
 
 // OPTIMIZACIÓN DE RENDIMIENTO
 function optimizeLoading() {
-    // Lazy load images if any
     const images = document.querySelectorAll('img');
     images.forEach(img => {
         img.loading = 'lazy';
     });
     
-    // Preload next chapter
     const currentChapter = window.location.pathname.match(/capitulo-(\d+)/);
     if (currentChapter) {
         const nextChapter = parseInt(currentChapter[1]) + 1;
@@ -393,8 +372,8 @@ function optimizeLoading() {
     }
 }
 
-// FUNCIONES GLOBALES PARA USAR DESDE HTML
+// FUNCIONES GLOBALES
 window.clearAllGlossary = clearAllGlossary;
 
-// Call optimization on load
+// Optimización al cargar
 window.addEventListener('load', optimizeLoading);
