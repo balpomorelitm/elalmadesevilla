@@ -40,6 +40,8 @@
             <p><span class="glosa" data-definicion="I leave, I put (from DEJAR)">Dejo</span> mi <span class="emoji-word" data-emoji="🧳">maleta</span> en el suelo. Estoy un poco <span class="emoji-word" data-emoji="😴">cansado</span> <span class="glosa" data-definicion="because of the trip">por el viaje</span>. Pero también estoy muy <span class="glosa" data-definicion="excited">emocionado</span>.</p>
         </div>
 
+        <!-- EL GLOSARIO APARECERÁ AQUÍ AUTOMÁTICAMENTE -->
+
         <div class="quiz">
             <h3>Comprensión - Capítulo 1</h3>
             <form class="quiz-form">
