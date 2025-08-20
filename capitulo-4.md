@@ -1,56 +1,119 @@
-layout: chapter title: "Capítulo 4: Un paseo por Santa Cruz"
-<!-- Botón para mostrar/ocultar Emojis -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 4: La clase de tapas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Volver al índice</a>
+        
+        <h1>Capítulo 4: La clase de tapas</h1>
+        
+        <button id="emoji-toggle" class="emoji-toggle-button">Mostrar Emojis 💡</button>
+        
+        <div class="audio-player">
+            <audio controls>
+                <source src="assets/audio/capitulo-4.mp3" type="audio/mpeg">
+                Tu navegador no soporta audio HTML5.
+            </audio>
+        </div>
+        
+        <div class="chapter-content">
+            <p><span class="glosa" data-definicion="today">Hoy</span>, la clase de español no es en la escuela. Es una <span class="glosa" data-definicion="activity">actividad</span> <span class="glosa" data-definicion="cultural">cultural</span>. Isabel nos <span class="glosa" data-definicion="takes us for tapas (from LLEVAR)">lleva de tapas</span>. Es una <span class="glosa" data-definicion="lesson">lección</span> sobre la <span class="emoji-word" data-emoji="🍽️">comida</span> de España.</p>
 
-<button id="emoji-toggle" class="emoji-toggle-button">Mostrar Emojis 💡</button>
+            <p>—Las tapas son una parte muy <span class="glosa" data-definicion="important">importante</span> de la cultura —<span class="glosa" data-definicion="explains (from EXPLICAR)">explica</span> Isabel.</p>
 
-<!-- Reproductor de Audio -->
+            <p><span class="glosa" data-definicion="we go (from IR)">Vamos</span> a un bar en el centro. Isabel <span class="glosa" data-definicion="orders (from PEDIR)">pide</span> para todos.</p>
 
-<!-- <div class="audio-player"><audio controls src="/assets/audio/capitulo-4.mp3"></audio></div> -->
+            <p>—Una tapa de tortilla de patatas, una de espinacas con garbanzos y una de salmorejo —le <span class="glosa" data-definicion="says (from DECIR)">dice</span> al camarero.</p>
 
-<hr>
+            <p><span class="glosa" data-definicion="while">Mientras</span> <span class="glosa" data-definicion="we eat (from COMER)">comemos</span>, <span class="glosa" data-definicion="I take out (from SACAR)">saco</span> el móvil y <span class="glosa" data-definicion="I show (from ENSEÑAR)">enseño</span> la foto a Carmen.</p>
 
-<!-- Texto del Capítulo con Glosas y Emojis -->
+            <p>—Mira, la chica misteriosa. ¿Quién es? —le digo.</p>
 
-<p>Hoy no tengo clase. Quiero <strong><span class="glosa" data-definicion="to walk, to stroll">pasear</span></strong> solo. Quiero hacer <span class="emoji-word" data-emoji="📷">fotos</span>. Voy al <strong><span class="glosa" data-definicion="neighborhood">barrio</span></strong> de Santa Cruz.</p>
+            <p>—¡<span class="glosa" data-definicion="what a beautiful photo!">Qué foto más bonita</span>! —dice Carmen—. No sé quién es. El vestido es un traje de flamenca, es muy antiguo. Creo que es la Feria de Sevilla.</p>
 
-<p>El barrio de Santa Cruz es muy antiguo. En Hong Kong, los barrios son muy modernos. Las <strong><span class="glosa" data-definicion="streets">calles</span></strong> de Santa Cruz son muy <strong><span class="glosa" data-definicion="narrow, not wide">estrechas</span></strong>. En Hong Kong, las calles son muy anchas y hay muchos coches. Aquí no hay muchos coches.</p>
+            <p>Panda mira un <span class="emoji-word" data-emoji="🖼️">cuadro</span> en la pared. En el cuadro hay <span class="emoji-word" data-emoji="🐎">caballos</span>.</p>
 
-<p>Las <strong><span class="glosa" data-definicion="houses">casas</span></strong> en Santa Cruz son bajas y blancas. Tienen <span class="emoji-word" data-emoji="🌸">flores</span> en los <strong><span class="glosa" data-definicion="balconies">balcones</span></strong>. Es muy diferente a Hong Kong. En Hong Kong, las casas son edificios muy, muy altos. Se llaman rascacielos.</p>
+            <p>—¡<span class="glosa" data-definicion="I love (plural things)">Me encantan</span> los cabellos de Andalucía! —dice Panda muy <span class="glosa" data-definicion="happy">contento</span>.</p>
 
-<p>Camino y hago muchas fotos. Fotos de las puertas, de las ventanas, de las flores. Me gusta mucho el barrio. Es tranquilo.</p>
+            <p>Isabel sonríe.</p>
 
-<p>De repente, miro a mi <strong><span class="glosa" data-definicion="around">alrededor</span></strong>. No sé dónde estoy. Todas las calles son <strong><span class="glosa" data-definicion="the same, alike">iguales</span></strong>. Estoy <strong><span class="glosa" data-definicion="lost">perdido</span></strong>.</p>
+            <p>—<span class="emoji-word" data-emoji="🐎">Caballos</span>, Panda. Los <span class="glosa" data-definicion="horse">caballos</span> son animales. El <span class="glosa" data-definicion="hair (on the head)">cabello</span> es el <span class="glosa" data-definicion="hair on the head">pelo de la cabeza</span>.</p>
 
-<p>Estoy un poco nervioso. No veo la Giralda. No sé cómo volver al piso.</p>
+            <p>Panda se ríe.</p>
 
-<p>Veo a una señora mayor sentada en una silla. Me acerco a ella.<br>—Perdón —digo—. ¿Dónde está la Giralda?</p>
+            <p>—¡Ah! ¡Caballos! ¡No cabellos! Entiendo.</p>
+        </div>
 
-<p>La señora me mira y sonríe. No habla. Con la <span class="emoji-word" data-emoji="🖐️">mano</span>, me indica una calle. Yo entiendo.</p>
+        <div class="quiz">
+            <h3>Comprensión - Capítulo 4</h3>
+            <form class="quiz-form">
+                <div class="pregunta">
+                    <p>1. ¿Dónde es la clase de español hoy?</p>
+                    <label><input type="radio" name="q1" value="a"> En la escuela</label>
+                    <label><input type="radio" name="q1" value="b" data-correcta="true"> En un bar de tapas</label>
+                    <label><input type="radio" name="q1" value="c"> En casa de Elena</label>
+                </div>
 
-<p>—Gracias —digo.</p>
+                <div class="pregunta">
+                    <p>2. ¿Qué tipo de actividad es?</p>
+                    <label><input type="radio" name="q2" value="a" data-correcta="true"> Una actividad cultural</label>
+                    <label><input type="radio" name="q2" value="b"> Una actividad deportiva</label>
+                    <label><input type="radio" name="q2" value="c"> Una actividad musical</label>
+                </div>
 
-<p>Camino por la calle. Y al final de la calle... ¡veo la Giralda! Estoy muy contento. No estoy perdido. Y una persona de Sevilla me entiende. ¡Mi español funciona!</p>
+                <div class="pregunta">
+                    <p>3. ¿Qué foto enseña Leo a Carmen?</p>
+                    <label><input type="radio" name="q3" value="a"> Una foto de Hong Kong</label>
+                    <label><input type="radio" name="q3" value="b" data-correcta="true"> La foto de la chica misteriosa</label>
+                    <label><input type="radio" name="q3" value="c"> Una foto de la escuela</label>
+                </div>
 
-<hr>
+                <div class="pregunta">
+                    <p>4. ¿Qué confunde Panda?</p>
+                    <label><input type="radio" name="q4" value="a" data-correcta="true"> Caballos y cabellos</label>
+                    <label><input type="radio" name="q4" value="b"> Tapas y sopas</label>
+                    <label><input type="radio" name="q4" value="c"> Carmen y Elena</label>
+                </div>
 
-<!-- Preguntas de Comprensión Lectora -->
+                <div class="pregunta">
+                    <p>5. ¿Qué dice Carmen sobre el vestido de la foto?</p>
+                    <label><input type="radio" name="q5" value="a"> Es muy moderno</label>
+                    <label><input type="radio" name="q5" value="b" data-correcta="true"> Es muy antiguo</label>
+                    <label><input type="radio" name="q5" value="c"> Es muy feo</label>
+                </div>
 
-<div class="quiz">
-<h3>Preguntas de Comprensión</h3>
-<form class="quiz-form">
-<div class="pregunta">
-<p><strong>1. ¿Cómo son las calles en el barrio de Santa Cruz?</strong></p>
-<label><input type="radio" name="q1" value="a"> Anchas y modernas</label>
-<label><input type="radio" name="q1" value="b" data-correcta="true"> Estrechas y antiguas</label>
-<label><input type="radio" name="q1" value="c"> Como en Hong Kong</label>
-</div>
-<div class="pregunta">
-<p><strong>2. ¿Qué le pasa a Leo en el barrio?</strong></p>
-<label><input type="radio" name="q2" value="a"> Encuentra a su amiga Carmen</label>
-<label><input type="radio" name="q2" value="b"> Come tapas</label>
-<label><input type="radio" name="q2" value="c" data-correcta="true"> Se pierde</label>
-</div>
-<button type="submit" class="quiz-submit-btn">Verificar Respuestas</button>
-</form>
-<div class="resultado-quiz"></div>
-</div>
+                <div class="pregunta">
+                    <p>6. ¿Cuál es la diferencia entre "caballo" y "cabello"?</p>
+                    <label><input type="radio" name="q6" value="a" data-correcta="true"> Caballo es un animal, cabello es pelo</label>
+                    <label><input type="radio" name="q6" value="b"> No hay diferencia</label>
+                    <label><input type="radio" name="q6" value="c"> Cabello es un animal, caballo es pelo</label>
+                </div>
+
+                <button type="submit">Comprobar respuestas</button>
+            </form>
+            <div class="resultado-quiz"></div>
+        </div>
+
+        <div class="reacciones">
+            <p>¿Cómo te ha parecido este capítulo?</p>
+            <button>😍</button>
+            <button>😊</button>
+            <button>😐</button>
+            <button>😕</button>
+            <button>🤔</button>
+        </div>
+
+        <nav class="chapter-nav">
+            <a href="capitulo-3.html" class="prev-chapter">← Anterior: Capítulo 3</a>
+            <a href="capitulo-5.html" class="next-chapter">Siguiente: Capítulo 5 →</a>
+        </nav>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
