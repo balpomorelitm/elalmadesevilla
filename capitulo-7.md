@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 7: El secreto revelado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Volver al índice</a>
+        
+        <h1>Capítulo 7: El secreto revelado</h1>
+        
+        <button id="emoji-toggle" class="emoji-toggle-button">Mostrar Emojis 💡</button>
+        
+        <div class="audio-player">
+            <audio controls>
+                <source src="assets/audio/capitulo-7.mp3" type="audio/mpeg">
+                Tu navegador no soporta audio HTML5.
+            </audio>
+        </div>
+        
+        <div class="chapter-content">
+            <p><span class="glosa" data-definicion="I return (from VOLVER)">Vuelvo</span> al barrio muy rápido. ¡La foto es de mi calle! <span class="glosa" data-definicion="I need (from NECESITAR)">Necesito</span> hablar con Elena.</p>
+
+            <p><span class="glosa" data-definicion="when I arrive">Cuando llego</span>, Elena está en el <span class="emoji-word" data-emoji="🛋️">salón</span>. Está <span class="glosa" data-definicion="reading (from LEER)">leyendo</span> un <span class="emoji-word" data-emoji="📖">libro</span>.</p>
+
+            <p>—¡Elena! ¡Elena! —digo, un poco <span class="glosa" data-definicion="agitated, out of breath">agitado</span>.</p>
+
+            <p>—¿<span class="glosa" data-definicion="what's happening?">Qué pasa</span>, Leo? ¿Estás bien? —pregunta.</p>
+
+            <p><span class="glosa" data-definicion="I take out (from SACAR)">Saco</span> el móvil y le <span class="glosa" data-definicion="I show (from ENSEÑAR)">enseño</span> la foto. —Esta foto, quiero saber... Una señora dice que es la Calle Pureza.</p>
+
+            <p>Elena <span class="glosa" data-definicion="she takes (from COGER)">coge</span> el móvil. Mira la foto <span class="glosa" data-definicion="during">durante</span> unos <span class="emoji-word" data-emoji="⏳">segundos</span>.</p>
+
+            <p>Sus <span class="glosa" data-definicion="eyes">ojos</span> se abren mucho.</p>
+
+            <p>—¿<span class="glosa" data-definicion="where">Dónde</span> está esta foto? —pregunta.</p>
+
+            <p>—En la churrería, <span class="glosa" data-definicion="downstairs">abajo</span>.</p>
+
+            <p>Elena sonríe. Es una sonrisa <span class="glosa" data-definicion="sad">triste</span> y <span class="glosa" data-definicion="happy">feliz</span> <span class="glosa" data-definicion="at the same time">a la vez</span>.</p>
+
+            <p>—Esa foto es de 1966, en la <span class="glosa" data-definicion="April Fair">feria de abril</span>. Estoy <span class="glosa" data-definicion="sure">segura</span> porque... la chica de la foto... soy yo.</p>
+
+            <p>Me quedo en <span class="glosa" data-definicion="silence">silencio</span>. No es posible.</p>
+
+            <p>—¿Tú? —pregunto.</p>
+
+            <p>—Sí, yo. <span class="glosa" data-definicion="many years ago">Hace muchos años</span>. <span class="glosa" data-definicion="at 18 years old">A los 18 años</span>.</p>
+
+            <p>El <span class="glosa" data-definicion="mystery">misterio</span> está <span class="glosa" data-definicion="finished, over">terminado</span>. La chica de la foto, el <span class="glosa" data-definicion="soul">alma</span> de Sevilla, es Elena.</p>
+        </div>
+
+        <div class="quiz">
+            <h3>Comprensión - Capítulo 7</h3>
+            <form class="quiz-form">
+                <div class="pregunta">
+                    <p>1. ¿Cómo vuelve Leo al barrio?</p>
+                    <label><input type="radio" name="q1" value="a" data-correcta="true"> Muy rápido</label>
+                    <label><input type="radio" name="q1" value="b"> Muy despacio</label>
+                    <label><input type="radio" name="q1" value="c"> Caminando tranquilo</label>
+                </div>
+
+                <div class="pregunta">
+                    <p>2. ¿Qué está haciendo Elena cuando llega Leo?</p>
+                    <label><input type="radio" name="q2" value="a"> Cocinando</label>
+                    <label><input type="radio" name="q2" value="b" data-correcta="true"> Leyendo un libro</label>
+                    <label><input type="radio" name="q2" value="c"> Viendo televisión</label>
+                </div>
+
+                <div class="pregunta">
+                    <p>3. ¿Cómo está Leo cuando habla con Elena?</p>
+                    <label><input type="radio" name="q3" value="a" data-correcta="true"> Un poco agitado</label>
+                    <label><input type="radio" name="q3" value="b"> Muy tranquilo</label>
+                    <label><input type="radio" name="q3" value="c"> Muy triste</label>
+                </div>
+
+                <div class="pregunta">
+                    <p>4. ¿De qué año es la foto?</p>
+                    <label><input type="radio" name="q4" value="a"> 1965</label>
+                    <label><input type="radio" name="q4" value="b" data-correcta="true"> 1966</label>
+                    <label><input type="radio" name="q4" value="c"> 1967</label>
+                </div>
+
+                <div class="pregunta">
+                    <p>5. ¿Cuántos años tenía Elena en la foto?</p>
+                    <label><input type="radio" name="q5" value="a"> 17 años</label>
+                    <label><input type="radio" name="q5" value="b" data-correcta="true"> 18 años</label>
+                    <label><input type="radio" name="q5" value="c"> 19 años</label>
+                </div>
+
+                <div class="pregunta">
+                    <p>6. ¿Quién es realmente la chica de la foto?</p>
+                    <label><input type="radio" name="q6" value="a"> Una desconocida</label>
+                    <label><input type="radio" name="q6" value="b" data-correcta="true"> Elena cuando era joven</label>
+                    <label><input type="radio" name="q6" value="c"> La madre de Elena</label>
+                </div>
+
+                <button type="submit">Comprobar respuestas</button>
+            </form>
+            <div class="resultado-quiz"></div>
+        </div>
+
+        <div class="reacciones">
+            <p>¿Cómo te ha parecido este capítulo?</p>
+            <button>😍</button>
+            <button>😊</button>
+            <button>😐</button>
+            <button>😕</button>
+            <button>🤔</button>
+        </div>
+
+        <nav class="chapter-nav">
+            <a href="capitulo-6.html" class="prev-chapter">← Anterior: Capítulo 6</a>
+            <a href="capitulo-8.html" class="next-chapter">Siguiente: Capítulo 8 →</a>
+        </nav>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
