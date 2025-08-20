@@ -23,6 +23,8 @@
 /* Cuerpo principal */
 body {
     font-family: 'Crimson Text', serif;
+    font-style: normal; 
+    font-weight: 400;   
     font-size: 30px; 
     line-height: 1.7;
     color: var(--text-primary);
