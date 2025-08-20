@@ -23,7 +23,7 @@
 /* Cuerpo principal */
 body {
     font-family: 'Crimson Text', serif;
-    font-size: 18px;
+    font-size: 36px; /* CAMBIO: era 18px, ahora 36px (doble) */
     line-height: 1.7;
     color: var(--text-primary);
     background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
@@ -35,7 +35,7 @@ body {
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 60px 50px;
+    padding: 60px 80px; /* CAMBIO: era 60px 50px, ahora más margen izquierdo/derecho */
     background: var(--paper-bg);
     border-radius: 8px;
     box-shadow: 
@@ -43,19 +43,18 @@ body {
         0 10px 20px rgba(0,0,0,0.04),
         inset 0 1px 0 rgba(255,255,255,0.8);
     position: relative;
-    /* Efecto de papel */
     background-image: 
         linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px),
         linear-gradient(rgba(0,0,0,0.01) 1px, transparent 1px);
     background-size: 40px 30px;
 }
 
-/* Efecto de borde de papel */
+/* También cambiar el margen del borde de papel: */
 .container::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 50px;
+    left: 80px; /* CAMBIO: era 50px, ahora 80px */
     width: 2px;
     height: 100%;
     background: linear-gradient(to bottom, 
@@ -91,10 +90,10 @@ h1::after {
 /* Primera letra grande (Drop cap) */
 .chapter-content p:first-child::first-letter {
     float: left;
-    font-size: 4em;
-    line-height: 0.8;
-    padding: 8px 8px 0 0;
-    margin: 8px 8px 0 0;
+    font-size: 8em; /* CAMBIO: era 4em, ahora 8em (proporcional al texto doble) */
+    line-height: 0.6; /* CAMBIO: era 0.8, ahora 0.6 (más arriba) */
+    padding: 4px 12px 0 0; /* CAMBIO: era 8px 8px 0 0, ahora menos padding arriba */
+    margin: 4px 12px 0 0; /* CAMBIO: era 8px 8px 0 0, ahora menos margin arriba */
     font-weight: 600;
     color: var(--accent-blue);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
@@ -103,9 +102,9 @@ h1::after {
 
 /* Párrafos */
 .chapter-content p {
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* CAMBIO: era 20px, ahora 30px */
     text-align: justify;
-    text-indent: 1.5em;
+    text-indent: 2.5em; /* CAMBIO: era 1.5em, ahora proporcional */
 }
 
 .chapter-content p:first-child {
@@ -273,7 +272,7 @@ h1::after {
     border-left: 4px solid var(--glosa-color);
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     font-family: 'Crimson Text', serif;
-    font-size: 16px;
+    font-size: 25px; 
     line-height: 1.8;
 }
 
@@ -317,7 +316,7 @@ h1::after {
     color: var(--text-secondary);
     display: inline;
     font-family: 'Inter', sans-serif;
-    font-size: 15px;
+    font-size: 25px;
 }
 
 .clear-glossary {
@@ -351,11 +350,11 @@ h1::after {
     
     .glossary-list {
         padding: 15px 20px;
-        font-size: 15px;
+        font-size: 20px;
     }
     
     .glossary-definition {
-        font-size: 14px;
+        font-size: 20px;
     }
 }
 
@@ -647,16 +646,16 @@ h1::after {
 @media (max-width: 768px) {
     .container {
         margin: 10px;
-        padding: 30px 25px;
+        padding: 30px 40px;
         border-radius: 6px;
     }
     
     .container::before {
-        left: 25px;
+        left: 35px;
     }
     
     body {
-        font-size: 16px;
+        font-size: 25px;
         line-height: 1.6;
         padding: 10px 0;
     }
@@ -666,9 +665,10 @@ h1::after {
     }
     
     .chapter-content p:first-child::first-letter {
-        font-size: 3em;
-        padding: 6px 6px 0 0;
-        margin: 6px 6px 0 0;
+        font-size: 6em; /* CAMBIO: era 3em, ahora 6em */
+        padding: 2px 8px 0 0; /* CAMBIO: menos padding arriba */
+        margin: 2px 8px 0 0; /* CAMBIO: menos margin arriba */
+        line-height: 0.5; /* CAMBIO: más arriba en móvil */
     }
     
     .chapter-nav {
