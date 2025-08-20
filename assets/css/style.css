@@ -25,7 +25,7 @@ body {
     font-family: 'Crimson Text', serif;
     font-style: normal; 
     font-weight: 400;   
-    font-size: 30px; 
+    font-size: 28px; 
     line-height: 1.7;
     color: var(--text-primary);
     background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
@@ -658,7 +658,7 @@ h1::after {
     }
     
     body {
-        font-size: 25px;
+        font-size: 20px;
         line-height: 1.6;
         padding: 10px 0;
     }
@@ -668,10 +668,10 @@ h1::after {
     }
     
     .chapter-content p:first-child::first-letter {
-        font-size: 6em; /* CAMBIO: era 3em, ahora 6em */
-        padding: 2px 8px 0 0; /* CAMBIO: menos padding arriba */
-        margin: 2px 8px 0 0; /* CAMBIO: menos margin arriba */
-        line-height: 0.5; /* CAMBIO: más arriba en móvil */
+        font-size: 5em; 
+        padding: 2px 8px 0 0; 
+        margin: 2px 8px 0 0; 
+        line-height: 0.5; 
     }
     
     .chapter-nav {
@@ -722,7 +722,7 @@ h1::after {
     }
     
     .container::before {
-        left: 25px; /* CAMBIO: coherencia */
+        left: 20px; 
     }
     
     .chapter-content p:first-child::first-letter {
