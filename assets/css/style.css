@@ -316,7 +316,7 @@ h1::after {
     color: var(--text-secondary);
     display: inline;
     font-family: 'Inter', sans-serif;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .clear-glossary {
