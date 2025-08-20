@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     initializeEmojiToggle();
-    initializeGlossaryClick(); // Nueva función para glosas con click
+    initializeGlossaryClick(); // Nueva función corregida
     initializeQuizzes();
     initializeReactions();
-    createGlossaryPanel(); // Crear panel de glosas
+    createGlossarySection(); // Crear sección de glosario al pie
 });
 
-// NUEVA FUNCIONALIDAD: Glosas con click en lugar de hover
+// NUEVA FUNCIONALIDAD: Glosas que aparecen al pie del texto
 function initializeGlossaryClick() {
     const terminos = document.querySelectorAll('.glosa');
     
@@ -14,64 +14,132 @@ function initializeGlossaryClick() {
         termino.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Remover clase clicked de otras glosas
-            document.querySelectorAll('.glosa.clicked').forEach(g => {
-                if (g !== this) g.classList.remove('clicked');
-            });
-            
-            // Toggle clicked state
-            this.classList.toggle('clicked');
-            
-            const word = this.textContent;
+            const word = this.textContent.trim();
             const definition = this.getAttribute('data-definicion');
             
+            // Toggle visual state
+            this.classList.toggle('clicked');
+            
             if (this.classList.contains('clicked')) {
-                showGlossaryDefinition(word, definition);
+                addToGlossary(word, definition);
             } else {
-                hideGlossaryDefinition();
+                removeFromGlossary(word);
             }
         });
     });
-    
-    // Cerrar glosa al hacer click fuera
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.glosa') && !e.target.closest('.glosa-panel')) {
-            hideGlossaryDefinition();
-            document.querySelectorAll('.glosa.clicked').forEach(g => {
-                g.classList.remove('clicked');
-            });
-        }
-    });
 }
 
-// Crear panel de glosas al pie
-function createGlossaryPanel() {
-    const panel = document.createElement('div');
-    panel.classList.add('glosa-panel');
-    panel.innerHTML = `
-        <button class="close-btn" onclick="hideGlossaryDefinition()">&times;</button>
-        <div class="glosa-word"></div>
-        <div class="glosa-definition"></div>
+// Crear sección de glosario al pie del capítulo
+function createGlossarySection() {
+    // Buscar dónde insertar el glosario (antes del quiz)
+    const quizSection = document.querySelector('.quiz');
+    const container = document.querySelector('.chapter-content');
+    
+    if (!container) return;
+    
+    const glossarySection = document.createElement('div');
+    glossarySection.classList.add('glossary-section', 'empty');
+    glossarySection.innerHTML = `
+        <h3>📖 Glosario de palabras seleccionadas</h3>
+        <div class="glossary-list"></div>
+        <button class="clear-glossary" onclick="clearAllGlossary()">Limpiar glosario</button>
     `;
-    document.body.appendChild(panel);
+    
+    // Insertar después del contenido del capítulo, antes del quiz
+    if (quizSection) {
+        quizSection.parentNode.insertBefore(glossarySection, quizSection);
+    } else {
+        container.parentNode.appendChild(glossarySection);
+    }
 }
 
-// Mostrar definición en el panel
-function showGlossaryDefinition(word, definition) {
-    const panel = document.querySelector('.glosa-panel');
-    const wordElement = panel.querySelector('.glosa-word');
-    const definitionElement = panel.querySelector('.glosa-definition');
+// Añadir palabra al glosario
+function addToGlossary(word, definition) {
+    const glossarySection = document.querySelector('.glossary-section');
+    const glossaryList = document.querySelector('.glossary-list');
     
-    wordElement.textContent = word;
-    definitionElement.textContent = definition;
+    // Verificar si la palabra ya existe
+    const existingItem = glossaryList.querySelector(`[data-word="${word}"]`);
+    if (existingItem) return;
     
-    panel.classList.add('show');
+    // Crear nuevo item del glosario
+    const glossaryItem = document.createElement('div');
+    glossaryItem.classList.add('glossary-item');
+    glossaryItem.setAttribute('data-word', word);
+    glossaryItem.innerHTML = `
+        <div class="glossary-word">${word}</div>
+        <div class="glossary-definition">${definition}</div>
+    `;
+    
+    // Añadir con efecto de aparición
+    glossaryList.appendChild(glossaryItem);
+    
+    // Mostrar la sección si estaba oculta
+    if (glossarySection.classList.contains('empty')) {
+        glossarySection.classList.remove('empty');
+        glossarySection.classList.add('has-definitions');
+    }
+    
+    // Scroll suave al glosario si es la primera palabra
+    if (glossaryList.children.length === 1) {
+        setTimeout(() => {
+            glossarySection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }, 300);
+    }
 }
 
-// Ocultar definición
-function hideGlossaryDefinition() {
-    const panel = document.querySelector('.glosa-panel');
-    panel.classList.remove('show');
+// Remover palabra del glosario
+function removeFromGlossary(word) {
+    const glossaryList = document.querySelector('.glossary-list');
+    const glossarySection = document.querySelector('.glossary-section');
+    const item = glossaryList.querySelector(`[data-word="${word}"]`);
+    
+    if (item) {
+        // Animación de salida
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(-20px)';
+        
+        setTimeout(() => {
+            item.remove();
+            
+            // Ocultar sección si no hay más palabras
+            if (glossaryList.children.length === 0) {
+                glossarySection.classList.add('empty');
+                glossarySection.classList.remove('has-definitions');
+            }
+        }, 300);
+    }
+}
+
+// Limpiar todo el glosario
+function clearAllGlossary() {
+    const glossaryList = document.querySelector('.glossary-list');
+    const glossarySection = document.querySelector('.glossary-section');
+    const clickedGlosas = document.querySelectorAll('.glosa.clicked');
+    
+    // Remover estado clicked de todas las glosas
+    clickedGlosas.forEach(glosa => {
+        glosa.classList.remove('clicked');
+    });
+    
+    // Animar salida de todos los items
+    const items = glossaryList.querySelectorAll('.glossary-item');
+    items.forEach((item, index) => {
+        setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(-20px)';
+        }, index * 100);
+    });
+    
+    // Limpiar y ocultar sección
+    setTimeout(() => {
+        glossaryList.innerHTML = '';
+        glossarySection.classList.add('empty');
+        glossarySection.classList.remove('has-definitions');
+    }, items.length * 100 + 300);
 }
 
 // FUNCIONALIDAD RENOVADA: Emojis con click en lugar de toggle global
@@ -173,7 +241,7 @@ function hideAllEmojis() {
     });
 }
 
-// SISTEMA DE QUIZZES (sin cambios, pero limpio)
+// SISTEMA DE QUIZZES
 function initializeQuizzes() {
     const quizForms = document.querySelectorAll('.quiz-form');
     
@@ -326,7 +394,7 @@ function optimizeLoading() {
 }
 
 // FUNCIONES GLOBALES PARA USAR DESDE HTML
-window.hideGlossaryDefinition = hideGlossaryDefinition;
+window.clearAllGlossary = clearAllGlossary;
 
 // Call optimization on load
 window.addEventListener('load', optimizeLoading);
