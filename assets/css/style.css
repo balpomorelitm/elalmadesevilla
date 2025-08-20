@@ -88,7 +88,34 @@ h1::after {
     height: 2px;
     background: linear-gradient(to right, transparent, var(--accent-warm), transparent);
 }
+h1, h2, h3, h4 {
+    text-align: center !important;
+}
 
+.quiz h3,
+.glossary-section h3,
+.audio-player,
+.reacciones,
+.reacciones p,
+.final-message,
+.final-message h3,
+.final-message p,
+.resultado-quiz {
+    text-align: center !important;
+}
+/* Botones centrados */
+.emoji-toggle-button,
+.quiz-submit-btn,
+.clear-glossary {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Navegación entre capítulos - centrada */
+.chapter-nav {
+    text-align: center;
+}
 /* Primera letra grande (Drop cap) */
 .chapter-content p:first-child::first-letter {
     float: left;
@@ -102,16 +129,27 @@ h1::after {
     font-family: 'Crimson Text', serif;
 }
 
-/* Párrafos */
+.chapter-content {
+    text-align: justify !important;
+}
 .chapter-content p {
     margin-bottom: 25px; 
-    text-align: justify;
+    text-align: justify !important;
     text-indent: 2.0em; 
     font-style: normal !important;
 }
-
+.glosa,
+.emoji-word {
+    text-align: inherit; /* Heredan la justificación del párrafo */
+}
 .chapter-content p:first-child {
     text-indent: 0;
+}
+
+.chapter-content,
+.chapter-content p,
+.chapter-content span {
+    text-align: justify !important; /* ✅ Fuerza justificación */
 }
 
 /* Enlaces de navegación */
@@ -656,6 +694,11 @@ h1::after {
     .container::before {
         left: 35px;
     }
+    
+   .chapter-content p {
+        text-align: justify !important; /* ✅ Mantener justificado en móviles */
+        text-indent: 1.5em; /* ✅ Menos sangría en móviles */
+    } 
     
     body {
         font-size: 20px;
