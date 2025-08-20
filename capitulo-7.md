@@ -1,22 +1,22 @@
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo 7: El secreto revelado</title>
+    <title>Chapter 7: El secreto revelado</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-link">← Volver al índice</a>
+        <a href="index.html" class="back-link">← Back to Index</a>
         
-        <h1>Capítulo 7: El secreto revelado</h1>
+        <h1>Chapter 7: El secreto revelado</h1>
         
-        <button id="emoji-toggle" class="emoji-toggle-button">Mostrar Emojis 💡</button>
+        <button id="emoji-toggle" class="emoji-toggle-button">Show Emojis 💡</button>
         
         <div class="audio-player">
             <audio controls>
                 <source src="assets/audio/capitulo-7.mp3" type="audio/mpeg">
-                Tu navegador no soporta audio HTML5.
+                Your browser does not support HTML5 audio.
             </audio>
         </div>
         
@@ -97,13 +97,13 @@
                     <label><input type="radio" name="q6" value="c"> La madre de Elena</label>
                 </div>
 
-                <button type="submit">Comprobar respuestas</button>
+                <button type="submit">Check answers</button>
             </form>
             <div class="resultado-quiz"></div>
         </div>
 
         <div class="reacciones">
-            <p>¿Cómo te ha parecido este capítulo?</p>
+            <p>What did you think of this chapter?</p>
             <button>😍</button>
             <button>😊</button>
             <button>😐</button>
@@ -112,8 +112,8 @@
         </div>
 
         <nav class="chapter-nav">
-            <a href="capitulo-6.html" class="prev-chapter">← Anterior: Capítulo 6</a>
-            <a href="capitulo-8.html" class="next-chapter">Siguiente: Capítulo 8 →</a>
+            <a href="capitulo-6.html" class="prev-chapter">← Previous: Chapter 6</a>
+            <a href="capitulo-8.html" class="next-chapter">Next: Chapter 8 →</a>
         </nav>
     </div>
 
