@@ -269,14 +269,14 @@ h1, h2, h3, h4 {
 
 /* Palabras con glosa - SIN panel flotante */
 .glosa {
-    color: var(--glosa-color) !important;
+    color: #b83280 !important; /* Forzar color directo */
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 3px;
     padding: 2px 4px;
     margin: 0 2px;
-    border-bottom: 1px dotted var(--glosa-color) !important;
+    border-bottom: 1px dotted #b83280 !important;
 }
 
 .glosa:hover {
