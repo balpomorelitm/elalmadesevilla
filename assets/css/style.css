@@ -1461,14 +1461,29 @@ h1, h2, h3, h4 {
 
 .hero-section {
     position: relative;
-    min-height: 90vh;
+    /* ✅ CAMBIO PRINCIPAL: Hacer el contenedor cuadrado */
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; /* ✅ Esto crea un contenedor cuadrado responsive */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin: -40px -40px 60px -40px; /* Extend to edges of container */
+    margin: -40px -40px 60px -40px;
     border-radius: 0 0 20px 20px;
     background: linear-gradient(135deg, #2c3e50 0%, #4a5568 50%, #2d3748 100%);
+}
+
+/* ✅ NUEVO: Contenedor interno para el contenido */
+.hero-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cover-image-container {
@@ -1478,7 +1493,7 @@ h1, h2, h3, h4 {
     width: 100%;
     height: 100%;
     z-index: 1;
-    overflow: hidden; /* ✅ Asegura que el zoom no se salga del contenedor */
+    overflow: hidden;
 }
 
 .cover-image {
@@ -1487,36 +1502,16 @@ h1, h2, h3, h4 {
     object-fit: cover;
     object-position: center;
     filter: brightness(0.7) saturate(1.1);
-    transform: scale(1.9);
+    transform: scale(1.2); /* ✅ REDUCIDO: de 1.9 a 1.2 para mejor ajuste */
     transition: all 3s ease-out;
     opacity: 0;
 }
 
 .cover-image.loaded {
     opacity: 1;
-    transform: scale(1);
-}
-/* MEJORA ADICIONAL: Para imágenes cuadradas, asegurar mejor centrado */
-@media (max-width: 768px) {
-    .cover-image {
-        transform: scale(1.4); /* ✅ Zoom aún mayor en móviles */
-        object-position: center center; /* ✅ Centrado perfecto */
-    }
-    
-    .cover-image.loaded {
-        transform: scale(1.05); /* ✅ Ligero zoom final en móviles */
-    }
+    transform: scale(1); /* ✅ Ahora se verá la imagen completa */
 }
 
-@media (max-width: 480px) {
-    .cover-image {
-        transform: scale(1.5); /* ✅ Zoom máximo en pantallas pequeñas */
-    }
-    
-    .cover-image.loaded {
-        transform: scale(1.1); /* ✅ Zoom final en pantallas pequeñas */
-    }
-}
 .image-overlay {
     position: absolute;
     top: 0;
@@ -1525,9 +1520,9 @@ h1, h2, h3, h4 {
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(74, 85, 104, 0.5) 0%, /* ✅ AUMENTADO: de 0.4 a 0.5 */
-        rgba(45, 55, 72, 0.7) 50%,  /* ✅ AUMENTADO: de 0.6 a 0.7 */
-        rgba(26, 32, 44, 0.9) 100%  /* ✅ AUMENTADO: de 0.8 a 0.9 */
+        rgba(74, 85, 104, 0.5) 0%,
+        rgba(45, 55, 72, 0.7) 50%,
+        rgba(26, 32, 44, 0.9) 100%
     );
     z-index: 2;
 }
@@ -1537,16 +1532,16 @@ h1, h2, h3, h4 {
     z-index: 3;
     text-align: center;
     color: white;
-    max-width: 800px;
-    padding: 40px 20px;
+    max-width: 80%; /* ✅ AJUSTADO: para que quepa mejor en el cuadrado */
+    padding: 20px;
     margin: 0 auto;
 }
 
 .main-title {
     font-family: 'Crimson Text', serif;
-    font-size: 4rem;
+    font-size: 3.5rem; /* ✅ REDUCIDO: de 4rem a 3.5rem */
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* ✅ REDUCIDO: de 20px a 15px */
     text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
     letter-spacing: 2px;
     opacity: 0;
@@ -1560,52 +1555,40 @@ h1, h2, h3, h4 {
 
 .subtitle {
     font-family: 'Inter', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 400;
-    margin-bottom: 30px;
+    font-size: 1.6rem; /* ✅ REDUCIDO: de 1.8rem a 1.6rem */
+    font-weight: 500;
+    margin-bottom: 20px; /* ✅ REDUCIDO: de 30px a 20px */
     color: #ffffff !important;
     opacity: 0;
     transform: translateY(20px);
     transition: all 1s ease-out 0.3s;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
     font-style: italic;
 }
 
 .story-description {
     font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 40px;
+    font-size: 1.1rem; /* ✅ REDUCIDO: de 1.2rem a 1.1rem */
+    line-height: 1.5; /* ✅ REDUCIDO: de 1.6 a 1.5 */
+    margin-bottom: 30px; /* ✅ REDUCIDO: de 40px a 30px */
     color: #ffffff !important;
     opacity: 0;
     transform: translateY(20px);
     transition: all 1s ease-out 0.6s;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    max-width: 600px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    max-width: 90%; /* ✅ AUMENTADO: de 600px a 90% */
     margin-left: auto;
     margin-right: auto;
+    font-weight: 500;
 }
-@media (max-width: 768px) {
-    .subtitle {
-        font-size: 1.4rem;
-        text-shadow: 3px 3px 10px rgba(0,0,0,0.9); /* ✅ Sombra aún más fuerte en móviles */
-        font-weight: 600; /* ✅ Más bold en móviles */
-    }
-    
-    .story-description {
-        font-size: 1rem;
-        padding: 0 10px;
-        text-shadow: 3px 3px 10px rgba(0,0,0,0.9); /* ✅ Sombra aún más fuerte en móviles */
-        font-weight: 600; /* ✅ Más bold en móviles */
-    }
-}
+
 .start-reading-btn {
     background: linear-gradient(135deg, #d69e2e 0%, #ed8936 50%, #c05621 100%);
     color: white;
     border: none;
-    padding: 18px 40px;
+    padding: 15px 35px; /* ✅ REDUCIDO: de 18px 40px a 15px 35px */
     border-radius: 50px;
-    font-size: 1.1rem;
+    font-size: 1rem; /* ✅ REDUCIDO: de 1.1rem a 1rem */
     font-weight: 600;
     font-family: 'Inter', sans-serif;
     cursor: pointer;
@@ -1618,6 +1601,80 @@ h1, h2, h3, h4 {
     gap: 12px;
     position: relative;
     overflow: hidden;
+}
+
+/* Responsive Design - AJUSTADO para contenedor cuadrado */
+@media (max-width: 768px) {
+    .hero-section {
+        margin: -30px -35px 40px -35px;
+        border-radius: 0 0 15px 15px;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .subtitle {
+        font-size: 1.3rem;
+        text-shadow: 3px 3px 10px rgba(0,0,0,0.9);
+        font-weight: 600;
+    }
+    
+    .story-description {
+        font-size: 0.95rem;
+        text-shadow: 3px 3px 10px rgba(0,0,0,0.9);
+        font-weight: 600;
+        max-width: 95%;
+    }
+    
+    .start-reading-btn {
+        padding: 12px 28px;
+        font-size: 0.9rem;
+    }
+    
+    /* ✅ AJUSTE del zoom en móviles para contenedor cuadrado */
+    .cover-image {
+        transform: scale(1.3);
+    }
+    
+    .cover-image.loaded {
+        transform: scale(1.05);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        margin: -20px -25px 30px -25px;
+        border-radius: 0 0 10px 10px;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .story-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+    
+    .hero-content {
+        padding: 15px;
+        max-width: 95%;
+    }
+    
+    /* ✅ AJUSTE adicional del zoom en pantallas muy pequeñas */
+    .cover-image {
+        transform: scale(1.4);
+    }
+    
+    .cover-image.loaded {
+        transform: scale(1.1);
+    }
 }
 
 .start-reading-btn:hover {
