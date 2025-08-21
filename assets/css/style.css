@@ -1525,9 +1525,9 @@ h1, h2, h3, h4 {
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(74, 85, 104, 0.4) 0%,
-        rgba(45, 55, 72, 0.6) 50%,
-        rgba(26, 32, 44, 0.8) 100%
+        rgba(74, 85, 104, 0.5) 0%, /* ✅ AUMENTADO: de 0.4 a 0.5 */
+        rgba(45, 55, 72, 0.7) 50%,  /* ✅ AUMENTADO: de 0.6 a 0.7 */
+        rgba(26, 32, 44, 0.9) 100%  /* ✅ AUMENTADO: de 0.8 a 0.9 */
     );
     z-index: 2;
 }
@@ -1585,7 +1585,20 @@ h1, h2, h3, h4 {
     margin-left: auto;
     margin-right: auto;
 }
-
+@media (max-width: 768px) {
+    .subtitle {
+        font-size: 1.4rem;
+        text-shadow: 3px 3px 10px rgba(0,0,0,0.9); /* ✅ Sombra aún más fuerte en móviles */
+        font-weight: 600; /* ✅ Más bold en móviles */
+    }
+    
+    .story-description {
+        font-size: 1rem;
+        padding: 0 10px;
+        text-shadow: 3px 3px 10px rgba(0,0,0,0.9); /* ✅ Sombra aún más fuerte en móviles */
+        font-weight: 600; /* ✅ Más bold en móviles */
+    }
+}
 .start-reading-btn {
     background: linear-gradient(135deg, #d69e2e 0%, #ed8936 50%, #c05621 100%);
     color: white;
@@ -1709,14 +1722,35 @@ h1, h2, h3, h4 {
         letter-spacing: 1px;
     }
     
-    .subtitle {
-        font-size: 1.4rem;
-    }
+.subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: #ffffff; /* ✅ CAMBIADO: de #ffd700 a blanco puro */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease-out 0.3s;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* ✅ MEJORADO: sombra más fuerte */
+    font-style: italic;
+    font-weight: 500; /* ✅ AÑADIDO: texto más bold para mejor legibilidad */
+}
     
-    .story-description {
-        font-size: 1rem;
-        padding: 0 10px;
-    }
+.story-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: #f7fafc; /* ✅ CAMBIADO: de #e2e8f0 a blanco más puro */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease-out 0.6s;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.9); /* ✅ MEJORADO: sombra más intensa */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500; /* ✅ AÑADIDO: texto más bold para mejor legibilidad */
+}
     
     .start-reading-btn {
         padding: 15px 30px;
