@@ -969,3 +969,40 @@ h1, h2, h3, h4 {
         font-size: 2.2em;
     }
 }
+/* Añadir estas reglas CSS al archivo style.css existente */
+
+/* Palabras que son TANTO emoji COMO glosa */
+.emoji-word.glosa {
+    color: #8b5a87; /* Color intermedio entre emoji y glosa */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    position: relative;
+    border-bottom: 1px dotted #8b5a87;
+}
+
+.emoji-word.glosa:hover {
+    background-color: rgba(139, 90, 135, 0.15);
+    transform: translateY(-1px);
+}
+
+.emoji-word.glosa.clicked {
+    background-color: rgba(139, 90, 135, 0.25);
+    border-bottom: 2px solid #8b5a87;
+}
+
+/* Cuando tiene emoji activo Y glosa activa */
+.emoji-word.glosa.clicked.emoji-active {
+    background: linear-gradient(135deg, rgba(43, 108, 176, 0.2) 0%, rgba(184, 50, 128, 0.2) 100%);
+    border-bottom: 2px solid #8b5a87;
+    box-shadow: 0 2px 8px rgba(139, 90, 135, 0.3);
+}
+
+/* Prioridad visual cuando ambos están activos */
+.emoji-word.glosa.emoji-active .emoji-icono {
+    margin-left: 8px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+}
