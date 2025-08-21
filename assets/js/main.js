@@ -226,7 +226,7 @@ function initializeEmojiToggle() {
             }
         });
     });
-}
+
 // GLOSAS actualizadas para trabajar con emoji+glosa
 function initializeGlossaryClick() {
     const terminos = document.querySelectorAll('.glosa');
