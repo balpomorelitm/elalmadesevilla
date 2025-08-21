@@ -268,24 +268,26 @@ h1, h2, h3, h4 {
 
 /* Palabras con glosa - SIN panel flotante */
 .glosa {
-    color: var(--glosa-color);
+    color: var(--glosa-color) !important;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 3px;
     padding: 2px 4px;
     margin: 0 2px;
-    border-bottom: 1px dotted var(--glosa-color);
+    border-bottom: 1px dotted var(--glosa-color) !important;
 }
 
 .glosa:hover {
+    color: var(--glosa-color) !important;
+    border-bottom: 1px dotted var(--glosa-color) !important;
     background-color: rgba(184, 50, 128, 0.1);
     transform: translateY(-1px);
 }
 
 .glosa.clicked {
-    background-color: rgba(184, 50, 128, 0.2);
-    border-bottom: 2px solid var(--glosa-color);
+    background-color: rgba(184, 50, 128, 0.2) !important;
+    border-bottom: 2px solid var(--glosa-color) !important;
 }
 
 /* GLOSARIO AL PIE DEL TEXTO - FORMATO BULLET POINTS */
