@@ -1,6 +1,6 @@
-# El Secreto de la Giralda
+# El alma de Sevilla
 
-An interactive Spanish learning experience set in the heart of Seville. The project delivers a static site containing the story *El Secreto de la Giralda*, enriched with activities that help learners practice vocabulary and comprehension.
+An interactive Spanish learning experience set in the heart of Seville. The project delivers a static site containing the story *El alma de Sevilla*, enriched with activities that help learners practice vocabulary and comprehension.
 
 ## Project Structure
 
