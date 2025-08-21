@@ -58,20 +58,46 @@
         // Add entrance animations on load
         window.addEventListener('load', function() {
             setTimeout(() => {
-                document.querySelector('.cover-image').classList.add('loaded');
-                document.querySelector('.main-title').classList.add('fade-in');
+                const coverImage = document.querySelector('.cover-image');
+                const mainTitle = document.querySelector('.main-title');
+                
+                if (coverImage) coverImage.classList.add('loaded');
+                if (mainTitle) mainTitle.classList.add('fade-in');
             }, 300);
             
             setTimeout(() => {
-                document.querySelector('.subtitle').classList.add('fade-in');
+                const subtitle = document.querySelector('.subtitle');
+                if (subtitle) subtitle.classList.add('fade-in');
             }, 800);
             
             setTimeout(() => {
-                document.querySelector('.story-description').classList.add('fade-in');
+                const description = document.querySelector('.story-description');
+                if (description) description.classList.add('fade-in');
             }, 1200);
             
             setTimeout(() => {
-                document.querySelector('.start-reading-btn').classList.add('fade-in');
+                const button = document.querySelector('.start-reading-btn');
+                if (button) button.classList.add('fade-in');
             }, 1600);
         });
-    </script
+
+        // Debug: Check if image loads correctly
+        window.addEventListener('DOMContentLoaded', function() {
+            const img = document.querySelector('.cover-image');
+            if (img) {
+                img.addEventListener('load', function() {
+                    console.log('✅ Imagen cargada correctamente');
+                });
+                
+                img.addEventListener('error', function() {
+                    console.error('❌ Error al cargar la imagen:', img.src);
+                    // Fallback: mostrar un fondo degradado si la imagen no carga
+                    img.style.display = 'none';
+                    document.querySelector('.hero-section').style.background = 
+                        'linear-gradient(135deg, #2c3e50 0%, #4a5568 50%, #2d3748 100%)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
