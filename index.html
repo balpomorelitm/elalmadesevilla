@@ -3,14 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Secreto de la Giralda</title>
+    <title>El Alma de Sevilla</title>
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>El alma de Sevilla</h1>
-        <h2>Welcome to the interactive book! Select a chapter to start reading.</h2>
+        <!-- Hero Section with Cover Image -->
+        <div class="hero-section">
+            <div class="cover-image-container">
+                <img src="assets/images/portada.png" alt="El Alma de Sevilla" class="cover-image">
+                <div class="image-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="main-title">El Alma de Sevilla</h1>
+                <p class="subtitle">Una historia interactiva de Sevilla</p>
+                <p class="story-description">Una historia interactiva de misterio, fotografía y descubrimiento en el corazón de Andalucía</p>
+                <button class="start-reading-btn" onclick="scrollToChapters()">
+                    <span>Comenzar a leer</span>
+                    <span class="btn-icon">📖</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h2>Welcome to the interactive book! Select a chapter to start reading.</h2>
+        </div>
 
         <div class="chapter-list">
             <a href="capitulo-1.html" data-chapter="1">Chapter 1: Un piso en Triana</a>
@@ -27,5 +46,32 @@
     </div>
 
     <script src="assets/js/main.js"></script>
-</body>
-</html>
+    <script>
+        // Smooth scroll to chapters
+        function scrollToChapters() {
+            document.querySelector('.chapter-list').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Add entrance animations on load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.querySelector('.cover-image').classList.add('loaded');
+                document.querySelector('.main-title').classList.add('fade-in');
+            }, 300);
+            
+            setTimeout(() => {
+                document.querySelector('.subtitle').classList.add('fade-in');
+            }, 800);
+            
+            setTimeout(() => {
+                document.querySelector('.story-description').classList.add('fade-in');
+            }, 1200);
+            
+            setTimeout(() => {
+                document.querySelector('.start-reading-btn').classList.add('fade-in');
+            }, 1600);
+        });
+    </script
