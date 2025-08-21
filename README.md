@@ -78,40 +78,6 @@ This interactive book delivers the complete story *El Alma de Sevilla* with inte
 - **Storage:** localStorage for progress tracking
 - **Responsive:** Mobile-first design approach
 
-## 🚀 Getting Started
-
-### Prerequisites
-- **Ruby and Bundler** (if using Jekyll)
-- **Modern web browser** with JavaScript enabled
-- **Audio support** for pronunciation features
-
-### Installation & Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone [your-repo-url]
-   cd el-alma-de-sevilla
-   ```
-
-2. **Install dependencies** (Jekyll setup)
-   ```bash
-   bundle install
-   ```
-
-3. **Serve locally**
-   ```bash
-   bundle exec jekyll serve
-   ```
-
-4. **Open in browser**
-   ```
-   http://localhost:4000
-   ```
-
-### Static Site Deployment
-The project works perfectly as a static site without Jekyll:
-- Simply open `index.html` in a web browser
-- All features work without a server (except audio files need proper MIME types)
 
 ## 📱 Device Compatibility
 
@@ -158,9 +124,7 @@ The project works perfectly as a static site without Jekyll:
 - **Visual indicators:** Clear marking of selected terms
 - **Easy management:** One-click clearing and reorganization
 
-## 🤝 Contributing
 
-We welcome contributions to improve the learning experience!
 
 ### Development Guidelines
 1. **Fork the repository** and create a feature branch
