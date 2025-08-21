@@ -63,6 +63,15 @@ const CHAPTER_GLOSSARY = {
 
 // INICIALIZACIÓN PRINCIPAL
 document.addEventListener('DOMContentLoaded', function() {
+    // Estilizar todas las glosas antes de inicializar otras funcionalidades
+    const rootStyles = getComputedStyle(document.documentElement);
+    const glosaColor = rootStyles.getPropertyValue('--glosa-color').trim();
+
+    document.querySelectorAll('.glosa').forEach(glosa => {
+        glosa.style.color = glosaColor;
+        glosa.style.borderBottom = `1px dotted ${glosaColor}`;
+    });
+
     initializeEmojiToggle();
     initializeGlossaryClick();
     initializeQuizzes();
