@@ -1455,3 +1455,277 @@ h1, h2, h3, h4 {
     font-weight: 600; /* Más bold para el mensaje principal */
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
+/* AÑADIR ESTOS ESTILOS AL FINAL DE assets/css/style.css */
+
+/* ===== HERO SECTION - PORTADA ===== */
+
+.hero-section {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: -40px -40px 60px -40px; /* Extend to edges of container */
+    border-radius: 0 0 20px 20px;
+    background: linear-gradient(135deg, #2c3e50 0%, #4a5568 50%, #2d3748 100%);
+}
+
+.cover-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.7) saturate(1.1);
+    transform: scale(1.1);
+    transition: all 2s ease-out;
+    opacity: 0;
+}
+
+.cover-image.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(74, 85, 104, 0.4) 0%,
+        rgba(45, 55, 72, 0.6) 50%,
+        rgba(26, 32, 44, 0.8) 100%
+    );
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 40px 20px;
+    margin: 0 auto;
+}
+
+.main-title {
+    font-family: 'Crimson Text', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out;
+    background: linear-gradient(135deg, #f7fafc, #e2e8f0, #cbd5e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: #ffd700;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease-out 0.3s;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    font-style: italic;
+}
+
+.story-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: #e2e8f0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease-out 0.6s;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.start-reading-btn {
+    background: linear-gradient(135deg, #d69e2e 0%, #ed8936 50%, #c05621 100%);
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 25px rgba(214, 158, 46, 0.4);
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.start-reading-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(214, 158, 46, 0.6);
+    background: linear-gradient(135deg, #ed8936 0%, #c05621 50%, #9c2a2a 100%);
+}
+
+.start-reading-btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.btn-icon {
+    font-size: 1.3em;
+    transition: transform 0.3s ease;
+}
+
+.start-reading-btn:hover .btn-icon {
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* Efecto de ondas en el botón */
+.start-reading-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.start-reading-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Animaciones de entrada */
+.fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.start-reading-btn.fade-in {
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Welcome section mejorada */
+.welcome-section {
+    text-align: center;
+    margin: 50px 0;
+    padding: 30px 20px;
+    background: rgba(74, 85, 104, 0.05);
+    border-radius: 15px;
+    border: 2px solid rgba(74, 85, 104, 0.1);
+}
+
+.welcome-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--accent-blue);
+    margin: 0;
+    text-align: center;
+}
+
+/* Partículas flotantes de fondo */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px, 100px 100px, 75px 75px;
+    animation: float 20s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 80vh;
+        margin: -30px -35px 40px -35px;
+    }
+    
+    .main-title {
+        font-size: 2.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .subtitle {
+        font-size: 1.4rem;
+    }
+    
+    .story-description {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+    
+    .start-reading-btn {
+        padding: 15px 30px;
+        font-size: 1rem;
+    }
+    
+    .welcome-section h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        min-height: 70vh;
+        margin: -20px -25px 30px -25px;
+    }
+    
+    .main-title {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .story-description {
+        font-size: 0.95rem;
+    }
+    
+    .hero-content {
+        padding: 30px 15px;
+    }
+}
