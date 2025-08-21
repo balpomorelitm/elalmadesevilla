@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,7 +40,9 @@
             <p><span class="glosa" data-definicion="I have (from TENER)">Tengo la</span> <span class="emoji-word glosa" data-emoji="🧳" data-definicion="suitcase, luggage">maleta</span> en mi habitación y <span class="glosa" data-definicion="I am (from ESTAR)">estoy</span> <span class="glosa" data-definicion="a little bit">un poco</span> <span class="emoji-word glosa" data-emoji="😴" data-definicion="tired">cansado</span> <span class="glosa" data-definicion="because of the trip">por el viaje</span>… Y también estoy muy <span class="glosa" data-definicion="happy">feliz</span>.</p>
         </div>
 
-        <!-- EL GLOSARIO APARECERÁ AQUÍ AUTOMÁTICAMENTE -->
+        <!-- EL GLOSARIO APARECE AUTOMÁTICAMENTE AQUÍ -->
+        
+        <!-- LAS FLASHCARDS SE CREAN AUTOMÁTICAMENTE AQUÍ -->
 
         <div class="quiz">
             <h3>Comprensión - Capítulo 1</h3>
@@ -91,6 +92,15 @@
                 <button type="submit">Check answers</button>
             </form>
             <div class="resultado-quiz"></div>
+        </div>
+
+        <div class="reacciones">
+            <p>What did you think of this chapter?</p>
+            <button>😍</button>
+            <button>😊</button>
+            <button>😐</button>
+            <button>😕</button>
+            <button>🤔</button>
         </div>
 
         <nav class="chapter-nav">
