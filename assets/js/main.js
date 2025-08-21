@@ -1,3 +1,4 @@
+// Variables globales para flashcards
 let flashcardsData = [];
 let currentCardIndex = 0;
 let correctAnswers = 0;
@@ -6,7 +7,7 @@ let sessionStartTime = 0;
 let isCardFlipped = false;
 let reviewPile = [];
 
-// Palabras del glosario de cada capítulo (definir todas las palabras disponibles)
+// Palabras del glosario de cada capítulo
 const CHAPTER_GLOSSARY = {
     1: [
         { word: "llamo", definition: "I call myself (from LLAMARSE)" },
@@ -60,14 +61,34 @@ const CHAPTER_GLOSSARY = {
     // Añadir más capítulos aquí...
 };
 
+// INICIALIZACIÓN PRINCIPAL
 document.addEventListener('DOMContentLoaded', function() {
     initializeEmojiToggle();
     initializeGlossaryClick();
     initializeQuizzes();
     initializeReactions();
     createGlossarySection();
-    initializeFlashcards(); // ← NUEVA LÍNEA
+    
+    // Inicializar flashcards después de que todo esté listo
+    setTimeout(() => {
+        initializeFlashcards();
+        
+        // Observar cambios en el glosario para flashcards
+        const observer = new MutationObserver(() => {
+            checkFlashcardsAvailability();
+        });
+        
+        const glossarySection = document.querySelector('.glossary-section');
+        if (glossarySection) {
+            observer.observe(glossarySection, { 
+                childList: true, 
+                subtree: true 
+            });
+        }
+    }, 500);
 });
+
+// ===== SISTEMA DE GLOSARIO =====
 
 // FUNCIONALIDAD: Glosas que aparecen al pie del texto con bullet points
 function initializeGlossaryClick() {
@@ -140,6 +161,9 @@ function addToGlossary(word, definition) {
         glossarySection.classList.add('has-definitions');
     }
     
+    // Verificar disponibilidad de flashcards
+    checkFlashcardsAvailability();
+    
     // Scroll suave al glosario si es la primera palabra
     if (glossaryList.children.length === 1) {
         setTimeout(() => {
@@ -170,6 +194,9 @@ function removeFromGlossary(word) {
                 glossarySection.classList.add('empty');
                 glossarySection.classList.remove('has-definitions');
             }
+            
+            // Verificar disponibilidad de flashcards
+            checkFlashcardsAvailability();
         }, 300);
     }
 }
@@ -199,10 +226,15 @@ function clearAllGlossary() {
         glossaryList.innerHTML = '';
         glossarySection.classList.add('empty');
         glossarySection.classList.remove('has-definitions');
+        
+        // Verificar disponibilidad de flashcards
+        checkFlashcardsAvailability();
     }, items.length * 50 + 300);
 }
 
-/ Inicializar sistema de flashcards
+// ===== SISTEMA DE FLASHCARDS =====
+
+// Inicializar sistema de flashcards
 function initializeFlashcards() {
     // Solo crear si no existe ya
     if (!document.querySelector('.flashcards-game')) {
@@ -327,6 +359,8 @@ function checkFlashcardsAvailability() {
         } else {
             description.textContent = `Practice vocabulary from this chapter with flashcards!`;
         }
+    } else {
+        flashcardsGame.classList.add('hidden');
     }
 }
 
@@ -353,7 +387,7 @@ function startFlashcards(mode) {
     } else if (mode === 'all') {
         // Obtener todas las palabras del capítulo
         const chapterNumber = getCurrentChapterNumber();
-        flashcardsData = CHAPTER_GLOSSARY[chapterNumber] || [];
+        flashcardsData = [...(CHAPTER_GLOSSARY[chapterNumber] || [])];
     }
     
     if (flashcardsData.length === 0) {
@@ -443,13 +477,11 @@ function markCard(isCorrect) {
     if (isCorrect) {
         correctAnswers++;
         cardElement.classList.add('correct-feedback');
-        // Sonido de éxito (opcional)
         playSound('correct');
     } else {
         // Añadir a pila de revisión
         reviewPile.push(currentCard);
         cardElement.classList.add('incorrect-feedback');
-        // Sonido de error (opcional)
         playSound('incorrect');
     }
     
@@ -570,7 +602,6 @@ function playPronunciation(event) {
 
 // Sonidos del juego
 function playSound(type) {
-    // Usando Web Audio API para sonidos simples
     try {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
@@ -705,47 +736,8 @@ function saveSessionStats(accuracy, sessionTime, cardsStudied) {
     localStorage.setItem('flashcards_global_stats', JSON.stringify(stats));
 }
 
-// Obtener estadísticas del jugador
-function getPlayerStats() {
-    const stats = JSON.parse(localStorage.getItem('flashcards_global_stats') || '{}');
-    const allChapterStats = {};
-    
-    // Recopilar estadísticas de todos los capítulos
-    for (let i = 1; i <= 10; i++) {
-        const chapterData = JSON.parse(localStorage.getItem(`flashcards_chapter_${i}`) || '{}');
-        allChapterStats[i] = chapterData;
-    }
-    
-    return {
-        globalStats: stats,
-        chapterStats: allChapterStats
-    };
-}
+// ===== SISTEMA DE EMOJIS =====
 
-// Inicializar flashcards cuando se carga la página
-document.addEventListener('DOMContentLoaded', function() {
-    // Añadir a la inicialización existente
-    setTimeout(() => {
-        initializeFlashcards();
-        
-        // Observar cambios en el glosario
-        const observer = new MutationObserver(() => {
-            checkFlashcardsAvailability();
-        });
-        
-        const glossarySection = document.querySelector('.glossary-section');
-        if (glossarySection) {
-            observer.observe(glossarySection, { 
-                childList: true, 
-                subtree: true 
-            });
-        }
-    }, 1000);
-});
-
-
-
-// FUNCIONALIDAD RENOVADA: Palabras con EMOJI + GLOSA
 function initializeEmojiToggle() {
     const emojiToggleButton = document.getElementById('emoji-toggle');
     if (!emojiToggleButton) return;
@@ -759,24 +751,23 @@ function initializeEmojiToggle() {
         
         if (globalEmojiMode) {
             showAllEmojis(palabrasConEmoji);
-            this.innerHTML = 'Ocultar Emojis 🙈';
+            this.innerHTML = 'Hide Emojis 🙈';
         } else {
             hideAllEmojis();
-            this.innerHTML = 'Mostrar Emojis 💡';
+            this.innerHTML = 'Show Emojis 💡';
         }
     });
     
-    // Click individual en palabras emoji (incluyendo las que tienen glosa)
+    // Click individual en palabras emoji
     const palabrasConEmoji = document.querySelectorAll('.emoji-word');
     palabrasConEmoji.forEach(palabra => {
         palabra.addEventListener('click', function(e) {
             e.preventDefault();
-            e.stopPropagation(); // Evitar conflictos con glosa
+            e.stopPropagation();
             
             // Toggle individual emoji
             const existingEmoji = this.nextElementSibling;
             if (existingEmoji && existingEmoji.classList.contains('emoji-icono')) {
-                // Remover emoji existente
                 this.classList.remove('emoji-active');
                 existingEmoji.classList.add('removing');
                 setTimeout(() => {
@@ -785,7 +776,6 @@ function initializeEmojiToggle() {
                     }
                 }, 300);
             } else {
-                // Añadir emoji
                 const emoji = this.getAttribute('data-emoji');
                 if (emoji) {
                     this.classList.add('emoji-active');
@@ -798,83 +788,8 @@ function initializeEmojiToggle() {
         });
     });
 }
-// Click individual en palabras emoji (incluyendo las que tienen glosa)
-    const palabrasConEmoji = document.querySelectorAll('.emoji-word');
-    palabrasConEmoji.forEach(palabra => {
-        palabra.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation(); // Evitar conflictos con glosa
-            
-            // Toggle individual emoji
-            const existingEmoji = this.nextElementSibling;
-            if (existingEmoji && existingEmoji.classList.contains('emoji-icono')) {
-                // Remover emoji existente
-                this.classList.remove('emoji-active');
-                existingEmoji.classList.add('removing');
-                setTimeout(() => {
-                    if (existingEmoji.parentNode) {
-                        existingEmoji.remove();
-                    }
-                }, 300);
-            } else {
-                // Añadir emoji
-                const emoji = this.getAttribute('data-emoji');
-                if (emoji) {
-                    this.classList.add('emoji-active');
-                    const emojiSpan = document.createElement('span');
-                    emojiSpan.classList.add('emoji-icono');
-                    emojiSpan.textContent = emoji;
-                    this.insertAdjacentElement('afterend', emojiSpan);
-                }
-            }
-        });
-    });
 
-// GLOSAS actualizadas para trabajar con emoji+glosa
-function initializeGlossaryClick() {
-    const terminos = document.querySelectorAll('.glosa');
-    
-    terminos.forEach(termino => {
-        termino.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Si también es una palabra emoji, no interferir con el emoji
-            if (this.classList.contains('emoji-word')) {
-                // Solo procesar glosa, no emoji
-                e.stopPropagation();
-            }
-            
-            // Remover clase clicked de otras glosas
-            document.querySelectorAll('.glosa.clicked').forEach(g => {
-                if (g !== this) g.classList.remove('clicked');
-            });
-            
-            // Toggle clicked state para glosa
-            this.classList.toggle('clicked');
-            
-            const word = this.textContent.trim();
-            const definition = this.getAttribute('data-definicion');
-            
-            if (this.classList.contains('clicked')) {
-                showGlossaryDefinition(word, definition);
-            } else {
-                hideGlossaryDefinition();
-            }
-        });
-    });
-    
-    // Cerrar glosa al hacer click fuera
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.glosa') && !e.target.closest('.glosa-panel')) {
-            hideGlossaryDefinition();
-            document.querySelectorAll('.glosa.clicked').forEach(g => {
-                g.classList.remove('clicked');
-            });
-        }
-    });
-}
-
-// Mostrar todos los emojis (incluyendo los que tienen glosa) - VERSIÓN CORRECTA
+// Mostrar todos los emojis
 function showAllEmojis(palabrasConEmoji) {
     palabrasConEmoji.forEach((palabra, index) => {
         // Evitar emojis duplicados
@@ -884,7 +799,7 @@ function showAllEmojis(palabrasConEmoji) {
         
         const emoji = palabra.getAttribute('data-emoji');
         if (emoji) {
-            palabra.classList.add('emoji-active'); // Usar emoji-active, no clicked
+            palabra.classList.add('emoji-active');
             const emojiSpan = document.createElement('span');
             emojiSpan.classList.add('emoji-icono');
             emojiSpan.textContent = emoji;
@@ -897,10 +812,10 @@ function showAllEmojis(palabrasConEmoji) {
     });
 }
 
-// Ocultar todos los emojis - VERSIÓN CORRECTA
+// Ocultar todos los emojis
 function hideAllEmojis() {
     const emojis = document.querySelectorAll('.emoji-icono');
-    const palabrasConEmoji = document.querySelectorAll('.emoji-word.emoji-active'); // Usar emoji-active
+    const palabrasConEmoji = document.querySelectorAll('.emoji-word.emoji-active');
     
     // Remover clase emoji-active de las palabras
     palabrasConEmoji.forEach(palabra => {
@@ -920,9 +835,8 @@ function hideAllEmojis() {
     });
 }
 
+// ===== SISTEMA DE QUIZZES =====
 
-
-// SISTEMA DE QUIZZES
 function initializeQuizzes() {
     const quizForms = document.querySelectorAll('.quiz-form');
     
@@ -1012,7 +926,8 @@ function showQuizResults(form, correctas, total) {
     });
 }
 
-// SISTEMA DE REACCIONES
+// ===== SISTEMA DE REACCIONES =====
+
 function initializeReactions() {
     const reactionButtons = document.querySelectorAll('.reacciones button');
     
@@ -1043,7 +958,8 @@ function saveReaction(chapter, reaction) {
     localStorage.setItem('bookReactions', JSON.stringify(reactions));
 }
 
-// OPTIMIZACIÓN DE RENDIMIENTO
+// ===== OPTIMIZACIÓN DE RENDIMIENTO =====
+
 function optimizeLoading() {
     const images = document.querySelectorAll('img');
     images.forEach(img => {
@@ -1062,9 +978,9 @@ function optimizeLoading() {
     }
 }
 
-// FUNCIONES GLOBALES
+// ===== FUNCIONES GLOBALES PARA HTML =====
+
 window.clearAllGlossary = clearAllGlossary;
-// Funciones globales para usar desde HTML
 window.startFlashcards = startFlashcards;
 window.flipCard = flipCard;
 window.markCard = markCard;
