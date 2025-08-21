@@ -1547,12 +1547,12 @@ h1, h2, h3, h4 {
     font-size: 4rem;
     font-weight: 700;
     margin-bottom: 20px;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
     letter-spacing: 2px;
     opacity: 0;
     transform: translateY(30px);
     transition: all 1s ease-out;
-    background: linear-gradient(135deg, #f7fafc, #e2e8f0, #cbd5e0);
+    background: linear-gradient(135deg, #ffffff, #f7fafc, #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1563,11 +1563,11 @@ h1, h2, h3, h4 {
     font-size: 1.8rem;
     font-weight: 400;
     margin-bottom: 30px;
-    color: #ffd700;
+    color: #ffffff !important;
     opacity: 0;
     transform: translateY(20px);
     transition: all 1s ease-out 0.3s;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     font-style: italic;
 }
 
@@ -1576,11 +1576,11 @@ h1, h2, h3, h4 {
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 40px;
-    color: #e2e8f0;
+    color: #ffffff !important;
     opacity: 0;
     transform: translateY(20px);
     transition: all 1s ease-out 0.6s;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
