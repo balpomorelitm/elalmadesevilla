@@ -140,6 +140,9 @@ function clearAllGlossary() {
 }
 
 // FUNCIONALIDAD: Emojis con click individual
+// Actualizar estas funciones en main.js
+
+// FUNCIONALIDAD RENOVADA: Palabras con EMOJI + GLOSA
 function initializeEmojiToggle() {
     const emojiToggleButton = document.getElementById('emoji-toggle');
     if (!emojiToggleButton) return;
@@ -153,24 +156,25 @@ function initializeEmojiToggle() {
         
         if (globalEmojiMode) {
             showAllEmojis(palabrasConEmoji);
-            this.innerHTML = 'Hide Emojis 🙈';
+            this.innerHTML = 'Ocultar Emojis 🙈';
         } else {
             hideAllEmojis();
-            this.innerHTML = 'Show Emojis 💡';
+            this.innerHTML = 'Mostrar Emojis 💡';
         }
     });
     
-    // Click individual en palabras emoji
+    // Click individual en palabras emoji (incluyendo las que tienen glosa)
     const palabrasConEmoji = document.querySelectorAll('.emoji-word');
     palabrasConEmoji.forEach(palabra => {
         palabra.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation(); // Evitar conflictos con glosa
             
             // Toggle individual emoji
             const existingEmoji = this.nextElementSibling;
             if (existingEmoji && existingEmoji.classList.contains('emoji-icono')) {
                 // Remover emoji existente
-                this.classList.remove('clicked');
+                this.classList.remove('emoji-active');
                 existingEmoji.classList.add('removing');
                 setTimeout(() => {
                     if (existingEmoji.parentNode) {
@@ -181,7 +185,7 @@ function initializeEmojiToggle() {
                 // Añadir emoji
                 const emoji = this.getAttribute('data-emoji');
                 if (emoji) {
-                    this.classList.add('clicked');
+                    this.classList.add('emoji-active');
                     const emojiSpan = document.createElement('span');
                     emojiSpan.classList.add('emoji-icono');
                     emojiSpan.textContent = emoji;
@@ -191,35 +195,116 @@ function initializeEmojiToggle() {
         });
     });
 }
+// Click individual en palabras emoji (incluyendo las que tienen glosa)
+    const palabrasConEmoji = document.querySelectorAll('.emoji-word');
+    palabrasConEmoji.forEach(palabra => {
+        palabra.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Evitar conflictos con glosa
+            
+            // Toggle individual emoji
+            const existingEmoji = this.nextElementSibling;
+            if (existingEmoji && existingEmoji.classList.contains('emoji-icono')) {
+                // Remover emoji existente
+                this.classList.remove('emoji-active');
+                existingEmoji.classList.add('removing');
+                setTimeout(() => {
+                    if (existingEmoji.parentNode) {
+                        existingEmoji.remove();
+                    }
+                }, 300);
+            } else {
+                // Añadir emoji
+                const emoji = this.getAttribute('data-emoji');
+                if (emoji) {
+                    this.classList.add('emoji-active');
+                    const emojiSpan = document.createElement('span');
+                    emojiSpan.classList.add('emoji-icono');
+                    emojiSpan.textContent = emoji;
+                    this.insertAdjacentElement('afterend', emojiSpan);
+                }
+            }
+        });
+    });
+}
+// GLOSAS actualizadas para trabajar con emoji+glosa
+function initializeGlossaryClick() {
+    const terminos = document.querySelectorAll('.glosa');
+    
+    terminos.forEach(termino => {
+        termino.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Si también es una palabra emoji, no interferir con el emoji
+            if (this.classList.contains('emoji-word')) {
+                // Solo procesar glosa, no emoji
+                e.stopPropagation();
+            }
+            
+            // Remover clase clicked de otras glosas
+            document.querySelectorAll('.glosa.clicked').forEach(g => {
+                if (g !== this) g.classList.remove('clicked');
+            });
+            
+            // Toggle clicked state para glosa
+            this.classList.toggle('clicked');
+            
+            const word = this.textContent.trim();
+            const definition = this.getAttribute('data-definicion');
+            
+            if (this.classList.contains('clicked')) {
+                showGlossaryDefinition(word, definition);
+            } else {
+                hideGlossaryDefinition();
+            }
+        });
+    });
+    
+    // Cerrar glosa al hacer click fuera
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.glosa') && !e.target.closest('.glosa-panel')) {
+            hideGlossaryDefinition();
+            document.querySelectorAll('.glosa.clicked').forEach(g => {
+                g.classList.remove('clicked');
+            });
+        }
+    });
+}
 
-// Mostrar todos los emojis
+// Mostrar todos los emojis (incluyendo los que tienen glosa) - VERSIÓN CORRECTA
 function showAllEmojis(palabrasConEmoji) {
     palabrasConEmoji.forEach((palabra, index) => {
+        // Evitar emojis duplicados
         if (palabra.nextElementSibling && palabra.nextElementSibling.classList.contains('emoji-icono')) {
             return;
         }
         
         const emoji = palabra.getAttribute('data-emoji');
         if (emoji) {
-            palabra.classList.add('clicked');
+            palabra.classList.add('emoji-active'); // Usar emoji-active, no clicked
             const emojiSpan = document.createElement('span');
             emojiSpan.classList.add('emoji-icono');
             emojiSpan.textContent = emoji;
+            
+            // Animación escalonada
             emojiSpan.style.animationDelay = `${index * 0.1}s`;
+            
             palabra.insertAdjacentElement('afterend', emojiSpan);
         }
     });
 }
 
-// Ocultar todos los emojis
+// Ocultar todos los emojis - VERSIÓN CORRECTA
 function hideAllEmojis() {
     const emojis = document.querySelectorAll('.emoji-icono');
-    const palabrasConEmoji = document.querySelectorAll('.emoji-word.clicked');
+    const palabrasConEmoji = document.querySelectorAll('.emoji-word.emoji-active'); // Usar emoji-active
     
+    // Remover clase emoji-active de las palabras
     palabrasConEmoji.forEach(palabra => {
-        palabra.classList.remove('clicked');
+        palabra.classList.remove('emoji-active');
     });
     
+    // Animar salida de emojis
     emojis.forEach((emoji, index) => {
         emoji.classList.add('removing');
         emoji.style.animationDelay = `${index * 0.05}s`;
@@ -231,6 +316,8 @@ function hideAllEmojis() {
         }, 300 + (index * 50));
     });
 }
+
+
 
 // SISTEMA DE QUIZZES
 function initializeQuizzes() {
