@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,23 +22,23 @@
         </div>
         
         <div class="chapter-content">
-            <p>Me <span class="glosa" data-definicion="I call myself (from LLAMARSE)"><strong>llamo</strong></span> Leo. <span class="glosa" data-definicion="I have (from TENER)"><strong>Tengo</strong></span> 19 <span class="glosa" data-definicion="years"><strong>años</strong></span> y <span class="glosa" data-definicion="I am (from SER)"><strong>soy</strong></span> de Hong Kong. Ahora <span class="glosa" data-definicion="I am (from ESTAR)"><strong>estoy</strong></span> en España. Estoy en Sevilla para <span class="glosa" data-definicion="to study"><strong>estudiar</strong></span> español.</p>
+            <p>Me <span class="glosa" data-definicion="I call myself (from LLAMARSE)">llamo</span> Leo. <span class="glosa" data-definicion="I have (from TENER)">Tengo</span> 19 <span class="glosa" data-definicion="years">años</span> y <span class="glosa" data-definicion="I am (from SER)">soy</span> de Hong Kong. <span class="glosa" data-definicion="now">Ahora</span> <span class="glosa" data-definicion="I am (from ESTAR)">estoy</span> en Sevilla para <span class="glosa" data-definicion="to study">estudiar</span> español.</p>
 
-            <p>El <span class="emoji-word" data-emoji="✈️">avión</span> <span class="glosa" data-definicion="arrives (from LLEGAR)"><strong>llega</strong></span> a Sevilla. Es el <span class="glosa" data-definicion="month"><strong>mes</strong></span> de <span class="glosa" data-definicion="April"><strong>abril</strong></span> y <span class="glosa" data-definicion="the weather is good (from HACER)"><strong>hace buen tiempo</strong></span>. El <span class="glosa" data-definicion="sky"><strong>cielo</strong></span> es muy <span class="glosa" data-definicion="blue 🟦"><strong>azul</strong></span> . <span class="glosa" data-definicion="There is/There are"><strong>Hay</strong></span> mucha <span class="glosa" data-definicion="light"><strong>luz</strong></span>.</p>
+            <p>El <span class="emoji-word glosa" data-emoji="✈️" data-definicion="airplane, plane">avión</span> <span class="glosa" data-definicion="arrives (from LLEGAR)">llega</span> a Sevilla. Es el <span class="glosa" data-definicion="month">mes</span> de <span class="glosa" data-definicion="April">abril</span> y <span class="glosa" data-definicion="the weather is good (from HACER)">hace buen tiempo</span>. El <span class="glosa" data-definicion="sky">cielo</span> es muy <span class="emoji-word glosa" data-emoji="🟦" data-definicion="blue (color)">azul</span>. <span class="glosa" data-definicion="there is a lot of light">Hay mucha luz</span>.</p>
 
-            <p><span class="glosa" data-definicion="I go in (from IR)"><strong>Voy en</strong></span> <span class="emoji-word" data-emoji="🚕">taxi</span>. <span class="glosa" data-definicion="Address"><strong>Dirección</strong></span> Calle Pureza, 88. El taxi <span class="glosa" data-definicion="goes (from IR)"><strong>va</strong></span> a un <span class="glosa" data-definicion="neighborhood"><strong>barrio</strong></span>, el barrio se llama Triana.</p>
+            <p><span class="glosa" data-definicion="I go in (from IR)">Voy en</span> <span class="emoji-word glosa" data-emoji="🚕" data-definicion="taxi, cab">taxi</span>. <span class="glosa" data-definicion="Address">Dirección</span> Calle Pureza, 88. El taxi <span class="glosa" data-definicion="goes (from IR)">va</span> a un <span class="glosa" data-definicion="neighborhood">barrio</span> que se llama Triana.</p>
 
-            <p>Una <span class="emoji-word" data-emoji="👵">mujer mayor</span> <span class="glosa" data-definicion="opens (from ABRIR)">abre</span> la <span class="emoji-word" data-emoji="🚪">puerta</span>.</p>
+            <p>Una <span class="emoji-word glosa" data-emoji="👵" data-definicion="older woman, elderly lady">mujer mayor</span> <span class="glosa" data-definicion="opens (from ABRIR)">abre</span> la <span class="emoji-word glosa" data-emoji="🚪" data-definicion="door">puerta</span>.</p>
 
-            <p>—Hola —<span class="glosa" data-definicion="says (from DECIR)"><strong>dice</strong></span> la <span class="glosa" data-definicion="woman"><strong>mujer</strong></span>—. Yo soy Elena.</p>
+            <p>—Hola —<span class="glosa" data-definicion="says (from DECIR)">dice</span> la <span class="glosa" data-definicion="woman">mujer</span>—. Yo soy Elena.</p>
 
-            <p>—Hola —<span class="glosa" data-definicion="I say (from DECIR)"><strong>digo</strong></span> yo—. Yo soy Leo.</p>
+            <p>—Hola —<span class="glosa" data-definicion="I say (from DECIR)">digo</span> yo—. Yo soy Leo.</p>
 
-            <p>Elena es muy <span class="glosa" data-definicion="kind"><strong>amable</strong></span> y <span class="emoji-word" data-emoji="😊">sonríe</span> mucho. <span class="glosa" data-definicion="speaks (from HABLAR)"><strong>Habla</strong></span> <span class="glosa" data-definicion="very slowly"><strong>despacito</strong></span>. Yo <span class="glosa" data-definicion="I understand (from ENTENDER)"><strong>entiendo</strong></span> <span class="glosa" data-definicion="a little bit"><strong>un poco</strong></span>, <span class="glosa" data-definicion="it's okay 🆗"><strong>está bien</strong></span>.</p>
+            <p>Elena es muy <span class="glosa" data-definicion="kind">amable</span> y <span class="emoji-word glosa" data-emoji="😊" data-definicion="smiles (from SONREÍR)">sonríe</span> mucho. <span class="glosa" data-definicion="speaks (from HABLAR)">Habla</span> <span class="glosa" data-definicion="very slowly">despacito</span>. Yo <span class="glosa" data-definicion="I understand (from ENTENDER)">entiendo</span> <span class="glosa" data-definicion="a little bit">un poco</span>, <span class="emoji-word glosa" data-emoji="🆗" data-definicion="it's okay, alright">está bien</span>.</p>
 
-            <p>El <span class="emoji-word" data-emoji="🏢">piso</span> es <span class="glosa" data-definicion="big"><strong>grande</strong></span> y <span class="glosa" data-definicion="pretty"><strong>bonito</strong></span>. Mi <span class="glosa" data-definicion="room"><strong>habitación</strong></span> es <span class="glosa" data-definicion="small"><strong>pequeña</strong></span>. Hay una <span class="emoji-word" data-emoji="🛏️">cama</span>, una <span class="glosa" data-definicion="table"><strong>>mesa</span> y un <span class="glosa" data-definicion="wardrobe / closet"><strong>armario</strong></span>. También hay una <span class="emoji-word" data-emoji="🖼️">ventana</span> grande. Desde la ventana <span class="glosa" data-definicion="I see (from VER)"><strong>veo</strong></span> el <span class="emoji-word" data-emoji="🌉">puente</span> de Triana. Es muy bonito.</p>
+            <p>El <span class="emoji-word glosa" data-emoji="🏢" data-definicion="apartment, flat">piso</span> es <span class="glosa" data-definicion="big">grande</span> y <span class="glosa" data-definicion="pretty">bonito</span>. Mi <span class="glosa" data-definicion="room">habitación</span> es <span class="glosa" data-definicion="small">pequeña</span>. Hay una <span class="emoji-word glosa" data-emoji="🛏️" data-definicion="bed">cama</span>, una <span class="emoji-word glosa" data-emoji="🪑" data-definicion="table">mesa</span> y un <span class="glosa" data-definicion="wardrobe / closet">armario</span>. También hay una <span class="emoji-word glosa" data-emoji="🖼️" data-definicion="window">ventana</span> grande. Desde la ventana <span class="glosa" data-definicion="I see (from VER)">veo</span> el <span class="emoji-word glosa" data-emoji="🌉" data-definicion="bridge">puente</span> de Triana. Es muy bonito.</p>
 
-            <p><span class="glosa" data-definicion="I have (from TENER)"><strong>Tengo la</strong></span> <span class="emoji-word" data-emoji="🧳">maleta</span> en mi habitación. Estoy un poco <span class="emoji-word" data-emoji="😴">cansado</span> <span class="glosa" data-definicion="because of the trip"><strong>por el viaje</strong></span>… Y también estoy muy <span class="glosa" data-definicion="happy"><strong>feliz</strong></span>.</p>
+            <p><span class="glosa" data-definicion="I have (from TENER)">Tengo la</span> <span class="emoji-word glosa" data-emoji="🧳" data-definicion="suitcase, luggage">maleta</span> en mi habitación y <span class="glosa" data-definicion="I am (from ESTAR)">estoy</span> <span class="glosa" data-definicion="a little bit">un poco</span> <span class="emoji-word glosa" data-emoji="😴" data-definicion="tired">cansado</span> <span class="glosa" data-definicion="because of the trip">por el viaje</span>… Y también estoy muy <span class="glosa" data-definicion="happy">feliz</span>.</p>
         </div>
 
         <!-- EL GLOSARIO APARECERÁ AQUÍ AUTOMÁTICAMENTE -->
@@ -80,18 +81,16 @@
                     <label><input type="radio" name="q5" value="c"> El aeropuerto</label>
                 </div>
 
+                <div class="pregunta">
+                    <p>6. ¿Cómo está Leo al final del capítulo?</p>
+                    <label><input type="radio" name="q6" value="a"> Solo cansado</label>
+                    <label><input type="radio" name="q6" value="b" data-correcta="true"> Cansado pero feliz</label>
+                    <label><input type="radio" name="q6" value="c"> Solo feliz</label>
+                </div>
+
                 <button type="submit">Check answers</button>
             </form>
             <div class="resultado-quiz"></div>
-        </div>
-
-        <div class="reacciones">
-            <p>What did you think of this chapter?</p>
-            <button>😍</button>
-            <button>😊</button>
-            <button>😐</button>
-            <button>😕</button>
-            <button>🤔</button>
         </div>
 
         <nav class="chapter-nav">
