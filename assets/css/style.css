@@ -1478,6 +1478,7 @@ h1, h2, h3, h4 {
     width: 100%;
     height: 100%;
     z-index: 1;
+    overflow: hidden; /* ✅ Asegura que el zoom no se salga del contenedor */
 }
 
 .cover-image {
@@ -1486,8 +1487,8 @@ h1, h2, h3, h4 {
     object-fit: cover;
     object-position: center;
     filter: brightness(0.7) saturate(1.1);
-    transform: scale(1.1);
-    transition: all 2s ease-out;
+    transform: scale(1.3);
+    transition: all 2.5s ease-out;
     opacity: 0;
 }
 
@@ -1495,7 +1496,27 @@ h1, h2, h3, h4 {
     opacity: 1;
     transform: scale(1);
 }
+/* MEJORA ADICIONAL: Para imágenes cuadradas, asegurar mejor centrado */
+@media (max-width: 768px) {
+    .cover-image {
+        transform: scale(1.4); /* ✅ Zoom aún mayor en móviles */
+        object-position: center center; /* ✅ Centrado perfecto */
+    }
+    
+    .cover-image.loaded {
+        transform: scale(1.05); /* ✅ Ligero zoom final en móviles */
+    }
+}
 
+@media (max-width: 480px) {
+    .cover-image {
+        transform: scale(1.5); /* ✅ Zoom máximo en pantallas pequeñas */
+    }
+    
+    .cover-image.loaded {
+        transform: scale(1.1); /* ✅ Zoom final en pantallas pequeñas */
+    }
+}
 .image-overlay {
     position: absolute;
     top: 0;
