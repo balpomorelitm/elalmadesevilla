@@ -253,11 +253,12 @@ function initializeFlashcards() {
 }
 
 // Crear sección de flashcards
+// Crear sección de flashcards
 function createFlashcardsSection() {
     const glossarySection = document.querySelector('.glossary-section');
-    const quizSection = document.querySelector('.quiz');
+    const chapterNav = document.querySelector('.chapter-nav');
     
-    if (!glossarySection || !quizSection) return;
+    if (!glossarySection || !chapterNav) return;
     
     const flashcardsSection = document.createElement('div');
     flashcardsSection.classList.add('flashcards-game', 'hidden');
@@ -344,8 +345,8 @@ function createFlashcardsSection() {
         </div>
     `;
     
-    // Insertar antes del quiz
-    quizSection.parentNode.insertBefore(flashcardsSection, quizSection);
+    // Insertar AL FINAL, después de la navegación de capítulos
+    chapterNav.parentNode.insertBefore(flashcardsSection, chapterNav.nextSibling);
 }
 
 // Verificar disponibilidad de flashcards
