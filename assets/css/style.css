@@ -1461,15 +1461,14 @@ h1, h2, h3, h4 {
 
 .hero-section {
     position: relative;
-    /* ✅ CAMBIO PRINCIPAL: Hacer el contenedor cuadrado */
-    width: 100%;
-    height: 0;
+    width: calc(100% + 80px);
+    height: 500px; 
     padding-bottom: 100%; /* ✅ Esto crea un contenedor cuadrado responsive */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin: -40px -40px 60px -40px;
+    margin: -40px -40px 40px -40px;
     border-radius: 0 0 20px 20px;
     background: linear-gradient(135deg, #2c3e50 0%, #4a5568 50%, #2d3748 100%);
 }
@@ -1606,8 +1605,9 @@ h1, h2, h3, h4 {
 /* Responsive Design - AJUSTADO para contenedor cuadrado */
 @media (max-width: 768px) {
     .hero-section {
-        margin: -30px -35px 40px -35px;
-        border-radius: 0 0 15px 15px;
+        height: 400px;
+        margin: -30px -35px 30px -35px;
+        width: calc(100% + 70px);
     }
     
     .main-title {
