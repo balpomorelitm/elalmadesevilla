@@ -654,8 +654,9 @@ function createFlashcardsSection() {
         </div>
     `;
     
-    // Insertar AL FINAL, después de la navegación de capítulos
     chapterNav.parentNode.insertBefore(flashcardsSection, chapterNav.nextSibling);
+    document.getElementById('flashcards-content').classList.add('hidden');
+    document.getElementById('flashcards-complete').classList.add('hidden');
 }
 
 // Verificar disponibilidad de flashcards
