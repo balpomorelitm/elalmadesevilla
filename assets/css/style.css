@@ -1839,3 +1839,20 @@ h1, h2, h3, h4 {
         padding: 30px 15px;
     }
 }
+/* ===== CLASE HIDDEN GLOBAL ===== */
+.hidden {
+    display: none !important;
+}
+
+/* ===== ESPECIFICIDAD PARA FLASHCARDS ===== */
+.flashcards-game.hidden {
+    display: none !important;
+}
+
+#flashcards-content.hidden {
+    display: none !important;
+}
+
+#flashcards-complete.hidden {
+    display: none !important;
+}
