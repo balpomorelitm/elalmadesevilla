@@ -1462,8 +1462,8 @@ h1, h2, h3, h4 {
 .hero-section {
     position: relative;
     width: calc(100% + 80px);
-    height: 500px; 
-    padding-bottom: 100%; /* ✅ Esto crea un contenedor cuadrado responsive */
+    /* height: 500px;  ❌ Elimina esto */
+    aspect-ratio: 1 / 1; /* ✅ Esto lo hace cuadrado moderno */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1473,7 +1473,6 @@ h1, h2, h3, h4 {
     background: linear-gradient(135deg, #2c3e50 0%, #4a5568 50%, #2d3748 100%);
 }
 
-/* ✅ NUEVO: Contenedor interno para el contenido */
 .hero-inner {
     position: absolute;
     top: 0;
