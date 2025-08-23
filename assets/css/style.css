@@ -2068,3 +2068,33 @@ h1, h2, h3, h4 {
     color: rgba(46, 204, 113, 0.9) !important;
     font-weight: 500;
 }
+/* Botón de audio en el reverso de la tarjeta */
+.flashcard-audio-back {
+    background: rgba(0,0,0,0.1);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    color: #155724;
+}
+
+.flashcard-audio-back:hover {
+    background: rgba(0,0,0,0.2);
+    transform: scale(1.1);
+}
+
+/* Mejorar el texto en modo productivo */
+.flashcard.productive-mode .flashcard-word {
+    color: #155724 !important;
+    font-size: 1.8em;
+}
+
+.flashcard.productive-mode .flashcard-definition {
+    color: #495057 !important;
+    font-weight: 600;
+    font-size: 1.8em;
+}
