@@ -6,12 +6,13 @@ let totalAnswered = 0;
 let sessionStartTime = 0;
 let isCardFlipped = false;
 let reviewPile = [];
+let currentMode = 'receptive'; // 'receptive' o 'productive
 
 // Palabras del glosario de cada capítulo
 const CHAPTER_GLOSSARY = {
     1: [
         // Tu glosario original del Capítulo 1 (manteniendo tu estructura base)
-        { word: "llamo", definition: "I call myself (from LLAMARSE)" },
+        { word: "me llamo", definition: "I call myself (from LLAMARSE)" },
         { word: "tengo", definition: "I have (from TENER)" },
         { word: "años", definition: "years" },
         { word: "soy", definition: "I am (from SER)" },
@@ -561,8 +562,6 @@ function initializeFlashcards() {
     }
 }
 
-// Crear sección de flashcards
-// Crear sección de flashcards
 function createFlashcardsSection() {
     const glossarySection = document.querySelector('.glossary-section');
     const chapterNav = document.querySelector('.chapter-nav');
@@ -576,15 +575,40 @@ function createFlashcardsSection() {
         <p id="flashcards-description">Practice vocabulary with interactive flashcards!</p>
         
         <div class="flashcards-controls">
-            <button class="flashcards-btn" onclick="startFlashcards('glossary')">
-                📖 Practice Selected Words
-            </button>
-            <button class="flashcards-btn" onclick="startFlashcards('all')">
-                📚 Practice All Chapter Words
-            </button>
+            <div class="mode-section">
+                <h4>📖 Receptive Mode (Spanish → English)</h4>
+                <p class="mode-description">See Spanish words, recall English meanings</p>
+                <div class="mode-buttons">
+                    <button class="flashcards-btn" onclick="startFlashcards('glossary', 'receptive')">
+                        Practice Selected Words
+                    </button>
+                    <button class="flashcards-btn" onclick="startFlashcards('all', 'receptive')">
+                        Practice All Chapter Words
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mode-section productive-mode">
+                <h4>🎯 Productive Mode (English → Spanish)</h4>
+                <p class="mode-description">See English meanings, recall Spanish words</p>
+                <div class="mode-buttons">
+                    <button class="flashcards-btn productive" onclick="startFlashcards('glossary', 'productive')">
+                        Practice Selected Words
+                    </button>
+                    <button class="flashcards-btn productive" onclick="startFlashcards('all', 'productive')">
+                        Practice All Chapter Words
+                    </button>
+                </div>
+            </div>
         </div>
         
         <div id="flashcards-content" class="hidden">
+            <!-- Indicador de modo -->
+            <div class="mode-indicator">
+                <span id="current-mode-text">Receptive Mode</span>
+                <span id="mode-arrow">🇪🇸 → 🇬🇧</span>
+            </div>
+            
             <!-- Estadísticas -->
             <div class="flashcards-stats">
                 <div class="stat-item">
@@ -655,8 +679,144 @@ function createFlashcardsSection() {
     `;
     
     chapterNav.parentNode.insertBefore(flashcardsSection, chapterNav.nextSibling);
-    document.getElementById('flashcards-content').classList.add('hidden');
-    document.getElementById('flashcards-complete').classList.add('hidden');
+}
+// Iniciar flashcards con modo específico
+function startFlashcards(mode, studyMode = 'receptive') {
+    sessionStartTime = Date.now();
+    flashcardsData = [];
+    currentMode = studyMode;
+    
+    if (mode === 'glossary') {
+        // Obtener palabras del glosario actual
+        const glossaryItems = document.querySelectorAll('.glossary-item');
+        glossaryItems.forEach(item => {
+            const word = item.querySelector('.glossary-word').textContent;
+            const definition = item.querySelector('.glossary-definition').textContent;
+            flashcardsData.push({ word, definition });
+        });
+    } else if (mode === 'all') {
+        // Obtener todas las palabras del capítulo
+        const chapterNumber = getCurrentChapterNumber();
+        flashcardsData = [...(CHAPTER_GLOSSARY[chapterNumber] || [])];
+    }
+    
+    if (flashcardsData.length === 0) {
+        alert('No words available for practice!');
+        return;
+    }
+    
+    // Barajar tarjetas
+    shuffleArray(flashcardsData);
+    
+    // Inicializar variables
+    currentCardIndex = 0;
+    correctAnswers = 0;
+    totalAnswered = 0;
+    reviewPile = [];
+    isCardFlipped = false;
+    
+    // Actualizar interfaz según el modo
+    updateModeInterface();
+    
+    // Mostrar interfaz de juego
+    document.querySelector('.flashcards-controls').classList.add('hidden');
+    document.getElementById('flashcards-content').classList.remove('hidden');
+    
+    // Mostrar primera tarjeta
+    showCurrentCard();
+    updateStats();
+    
+    // Activar controles de teclado
+    document.addEventListener('keydown', handleKeyPress);
+}
+
+// Actualizar interfaz según el modo
+function updateModeInterface() {
+    const modeText = document.getElementById('current-mode-text');
+    const modeArrow = document.getElementById('mode-arrow');
+    const correctBtn = document.getElementById('correct-btn');
+    const incorrectBtn = document.getElementById('incorrect-btn');
+    
+    if (currentMode === 'productive') {
+        modeText.textContent = 'Productive Mode';
+        modeArrow.textContent = '🇬🇧 → 🇪🇸';
+        correctBtn.innerHTML = '✓ I knew it <span class="key-hint">SPACE</span>';
+        incorrectBtn.innerHTML = '✗ Need practice <span class="key-hint">X</span>';
+    } else {
+        modeText.textContent = 'Receptive Mode';
+        modeArrow.textContent = '🇪🇸 → 🇬🇧';
+        correctBtn.innerHTML = '✓ I knew it <span class="key-hint">SPACE</span>';
+        incorrectBtn.innerHTML = '✗ Need practice <span class="key-hint">X</span>';
+    }
+}
+
+// Mostrar tarjeta actual según el modo
+function showCurrentCard() {
+    if (currentCardIndex >= flashcardsData.length) {
+        // Si hemos terminado, pero hay cartas para revisar
+        if (reviewPile.length > 0) {
+            flashcardsData = [...reviewPile];
+            reviewPile = [];
+            currentCardIndex = 0;
+            shuffleArray(flashcardsData);
+        } else {
+            // Sesión completada
+            completeSession();
+            return;
+        }
+    }
+    
+    const currentCard = flashcardsData[currentCardIndex];
+    const cardElement = document.getElementById('flashcard');
+    const wordElement = document.getElementById('card-word');
+    const definitionElement = document.getElementById('card-definition');
+    
+    // Resetear tarjeta
+    cardElement.classList.remove('flipped', 'new-card', 'correct-feedback', 'incorrect-feedback');
+    isCardFlipped = false;
+    
+    // Mostrar contenido según el modo
+    if (currentMode === 'productive') {
+        // Modo productivo: mostrar inglés → español
+        wordElement.textContent = currentCard.definition;
+        definitionElement.textContent = currentCard.word;
+        
+        // Ocultar botón de audio en la parte frontal para modo productivo
+        const audioBtn = document.querySelector('.flashcard-audio');
+        audioBtn.style.display = 'none';
+    } else {
+        // Modo receptivo: mostrar español → inglés
+        wordElement.textContent = currentCard.word;
+        definitionElement.textContent = currentCard.definition;
+        
+        // Mostrar botón de audio para modo receptivo
+        const audioBtn = document.querySelector('.flashcard-audio');
+        audioBtn.style.display = 'block';
+    }
+    
+    // Animación de entrada
+    setTimeout(() => {
+        cardElement.classList.add('new-card');
+    }, 50);
+    
+    updateStats();
+}
+
+// Reproducir pronunciación - solo para palabras en español
+function playPronunciation(event) {
+    event.stopPropagation();
+    
+    // En modo productivo, pronunciar la palabra española (que está en el reverso)
+    const wordToPronounce = currentMode === 'productive' 
+        ? flashcardsData[currentCardIndex].word 
+        : document.getElementById('card-word').textContent;
+    
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(wordToPronounce);
+        utterance.lang = 'es-ES';
+        utterance.rate = 0.8;
+        speechSynthesis.speak(utterance);
+    }
 }
 
 // Verificar disponibilidad de flashcards
@@ -1299,7 +1459,7 @@ function optimizeLoading() {
 }
 
 // ===== FUNCIONES GLOBALES PARA HTML =====
-
+window.startFlashcards = startFlashcards;
 window.clearAllGlossary = clearAllGlossary;
 window.startFlashcards = startFlashcards;
 window.flipCard = flipCard;
@@ -1307,6 +1467,4 @@ window.markCard = markCard;
 window.playPronunciation = playPronunciation;
 window.restartDifficultCards = restartDifficultCards;
 window.resetFlashcards = resetFlashcards;
-
-// Optimización al cargar
 window.addEventListener('load', optimizeLoading);
