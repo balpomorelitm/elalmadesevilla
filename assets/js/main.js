@@ -562,6 +562,7 @@ function initializeFlashcards() {
     }
 }
 
+// Crear sección de flashcards con modo productivo
 function createFlashcardsSection() {
     const glossarySection = document.querySelector('.glossary-section');
     const chapterNav = document.querySelector('.chapter-nav');
@@ -642,6 +643,7 @@ function createFlashcardsSection() {
                     <div class="flashcard-face flashcard-back">
                         <div class="flashcard-content">
                             <div class="flashcard-definition" id="card-definition">Definition will appear here</div>
+                            <button class="flashcard-audio-back" onclick="playPronunciation(event)" title="Listen" style="display: none;">🔊</button>
                         </div>
                     </div>
                 </div>
@@ -680,7 +682,8 @@ function createFlashcardsSection() {
     
     chapterNav.parentNode.insertBefore(flashcardsSection, chapterNav.nextSibling);
 }
-// Iniciar flashcards con modo específico
+
+// Iniciar flashcards con modo específico - FUNCIÓN ÚNICA Y CORREGIDA
 function startFlashcards(mode, studyMode = 'receptive') {
     sessionStartTime = Date.now();
     flashcardsData = [];
@@ -734,23 +737,20 @@ function startFlashcards(mode, studyMode = 'receptive') {
 function updateModeInterface() {
     const modeText = document.getElementById('current-mode-text');
     const modeArrow = document.getElementById('mode-arrow');
-    const correctBtn = document.getElementById('correct-btn');
-    const incorrectBtn = document.getElementById('incorrect-btn');
+    const cardElement = document.getElementById('flashcard');
     
     if (currentMode === 'productive') {
         modeText.textContent = 'Productive Mode';
         modeArrow.textContent = '🇬🇧 → 🇪🇸';
-        correctBtn.innerHTML = '✓ I knew it <span class="key-hint">SPACE</span>';
-        incorrectBtn.innerHTML = '✗ Need practice <span class="key-hint">X</span>';
+        cardElement.classList.add('productive-mode');
     } else {
         modeText.textContent = 'Receptive Mode';
         modeArrow.textContent = '🇪🇸 → 🇬🇧';
-        correctBtn.innerHTML = '✓ I knew it <span class="key-hint">SPACE</span>';
-        incorrectBtn.innerHTML = '✗ Need practice <span class="key-hint">X</span>';
+        cardElement.classList.remove('productive-mode');
     }
 }
 
-// Mostrar tarjeta actual según el modo
+// Mostrar tarjeta actual según el modo - FUNCIÓN ÚNICA Y CORREGIDA
 function showCurrentCard() {
     if (currentCardIndex >= flashcardsData.length) {
         // Si hemos terminado, pero hay cartas para revisar
@@ -770,6 +770,8 @@ function showCurrentCard() {
     const cardElement = document.getElementById('flashcard');
     const wordElement = document.getElementById('card-word');
     const definitionElement = document.getElementById('card-definition');
+    const audioBtn = document.querySelector('.flashcard-audio');
+    const audioBtnBack = document.querySelector('.flashcard-audio-back');
     
     // Resetear tarjeta
     cardElement.classList.remove('flipped', 'new-card', 'correct-feedback', 'incorrect-feedback');
@@ -778,40 +780,57 @@ function showCurrentCard() {
     // Mostrar contenido según el modo
     if (currentMode === 'productive') {
         // Modo productivo: mostrar inglés → español
-        wordElement.textContent = currentCard.definition;
+        wordElement.textContent = currentCard.definition.replace(/📚|✈️|🌸|☀️|🔵|🚕|🏘️|👵|🚪|👩|😊|🐌|💡|✅|🏠|🛏️|🪟|👁️|🌉|🧳|😴|😊/g, '').trim();
         definitionElement.textContent = currentCard.word;
         
-        // Ocultar botón de audio en la parte frontal para modo productivo
-        const audioBtn = document.querySelector('.flashcard-audio');
-        audioBtn.style.display = 'none';
+        // Ocultar botón de audio en frente, mostrar en reverso
+        if (audioBtn) audioBtn.style.display = 'none';
+        if (audioBtnBack) audioBtnBack.style.display = 'block';
+        
+        // Aplicar estilos de modo productivo
+        cardElement.classList.add('productive-mode');
     } else {
         // Modo receptivo: mostrar español → inglés
         wordElement.textContent = currentCard.word;
         definitionElement.textContent = currentCard.definition;
         
-        // Mostrar botón de audio para modo receptivo
-        const audioBtn = document.querySelector('.flashcard-audio');
-        audioBtn.style.display = 'block';
+        // Mostrar botón de audio en frente, ocultar en reverso
+        if (audioBtn) audioBtn.style.display = 'block';
+        if (audioBtnBack) audioBtnBack.style.display = 'none';
+        
+        // Remover estilos de modo productivo
+        cardElement.classList.remove('productive-mode');
     }
     
     // Animación de entrada
     setTimeout(() => {
         cardElement.classList.add('new-card');
+        if (currentMode === 'productive') {
+            cardElement.classList.add('productive-entry');
+        }
     }, 50);
     
     updateStats();
 }
 
-// Reproducir pronunciación - solo para palabras en español
+// Reproducir pronunciación mejorada para ambos modos
 function playPronunciation(event) {
     event.stopPropagation();
     
-    // En modo productivo, pronunciar la palabra española (que está en el reverso)
-    const wordToPronounce = currentMode === 'productive' 
-        ? flashcardsData[currentCardIndex].word 
-        : document.getElementById('card-word').textContent;
+    let wordToPronounce;
     
-    if ('speechSynthesis' in window) {
+    if (currentMode === 'productive') {
+        // En modo productivo, pronunciar siempre la palabra española
+        wordToPronounce = flashcardsData[currentCardIndex].word;
+    } else {
+        // En modo receptivo, pronunciar la palabra del frente
+        wordToPronounce = document.getElementById('card-word').textContent;
+    }
+    
+    // Limpiar emojis para pronunciación
+    wordToPronounce = wordToPronounce.replace(/[^\w\s\-áéíóúñüÁÉÍÓÚÑÜ]/g, '').trim();
+    
+    if ('speechSynthesis' in window && wordToPronounce) {
         const utterance = new SpeechSynthesisUtterance(wordToPronounce);
         utterance.lang = 'es-ES';
         utterance.rate = 0.8;
