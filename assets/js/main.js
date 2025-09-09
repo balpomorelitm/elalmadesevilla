@@ -593,10 +593,10 @@ function createFlashcardsSection() {
                 <h4>🎯 Productive Mode (English → Spanish)</h4>
                 <p class="mode-description">See English meanings, recall Spanish words</p>
                 <div class="mode-buttons">
-                    <button class="flashcards-btn productive" onclick="startFlashcards('glossary', 'productive')">
+                    <button class="flashcards-btn productive" onclick="startProductiveFlashcards('glossary')">
                         Practice Selected Words
                     </button>
-                    <button class="flashcards-btn productive" onclick="startFlashcards('all', 'productive')">
+                    <button class="flashcards-btn productive" onclick="startProductiveFlashcards('all')">
                         Practice All Chapter Words
                     </button>
                 </div>
@@ -731,6 +731,11 @@ function startFlashcards(mode, studyMode = 'receptive') {
     
     // Activar controles de teclado
     document.addEventListener('keydown', handleKeyPress);
+}
+
+// Función auxiliar para iniciar directamente en modo productivo
+function startProductiveFlashcards(mode) {
+    startFlashcards(mode, 'productive');
 }
 
 // Actualizar interfaz según el modo
@@ -870,8 +875,8 @@ function getCurrentChapterNumber() {
     return match ? parseInt(match[1]) : 1;
 }
 
-// Iniciar flashcards
-function startFlashcards(mode) {
+// Iniciar flashcards (versión legacy preservada)
+function legacyStartFlashcards(mode) {
     sessionStartTime = Date.now();
     flashcardsData = [];
     
@@ -916,8 +921,8 @@ function startFlashcards(mode) {
     document.addEventListener('keydown', handleKeyPress);
 }
 
-// Mostrar tarjeta actual
-function showCurrentCard() {
+// Mostrar tarjeta actual (versión legacy)
+function legacyShowCurrentCard() {
     if (currentCardIndex >= flashcardsData.length) {
         // Si hemos terminado, pero hay cartas para revisar
         if (reviewPile.length > 0) {
@@ -1086,8 +1091,8 @@ function handleKeyPress(event) {
     }
 }
 
-// Reproducir pronunciación (Text-to-Speech)
-function playPronunciation(event) {
+// Reproducir pronunciación (versión legacy)
+function legacyPlayPronunciation(event) {
     event.stopPropagation();
     const word = document.getElementById('card-word').textContent;
     
@@ -1479,8 +1484,8 @@ function optimizeLoading() {
 
 // ===== FUNCIONES GLOBALES PARA HTML =====
 window.startFlashcards = startFlashcards;
+window.startProductiveFlashcards = startProductiveFlashcards;
 window.clearAllGlossary = clearAllGlossary;
-window.startFlashcards = startFlashcards;
 window.flipCard = flipCard;
 window.markCard = markCard;
 window.playPronunciation = playPronunciation;
